@@ -1,0 +1,14 @@
+{
+    "id": 1,
+    "table": [{
+        "index": "Index",
+        "time": "Time",
+        "power": "Power"
+    }],
+    "beginTime": "",
+    "endTime": "",
+    "timeType": "",
+    "methodType": 0,
+    "nextProfile": 0,
+    "repeatCount": 1
+}

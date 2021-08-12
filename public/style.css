@@ -1,0 +1,466 @@
+/*Styling of the Autonomous System*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+
+/* Body */
+
+body {
+    font-family: Helvetica;
+    line-height: 1;
+    font-size: 12px;
+}
+
+
+/* Header */
+
+header {
+    background: #718398;
+    color: white;
+    padding: 2rem;
+}
+
+
+/* Paragraph */
+
+p {
+    font-size: 12px;
+    padding: 0.5rem 0.5rem;
+}
+
+
+/* Container */
+
+.container {
+    overflow: auto;
+    height: 550px;
+    padding: 0.1rem 0.1rem;
+}
+
+
+/* Clear floats after the columns */
+
+.container:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+/* Column */
+
+.column {
+    float: left;
+    padding: 10px;
+}
+
+.left {
+    width: 35%;
+    padding: 0.3rem 0.3rem;
+}
+
+.middle {
+    width: 35%;
+    padding: 0.3rem 0.3rem;
+}
+
+.right {
+    width: 30%;
+    padding: 0.3rem 0.3rem;
+}
+
+.left1 {
+    width: 50%;
+    padding: 0.3rem 0.3rem;
+}
+
+.right1 {
+    width: 50%;
+    padding: 0.3rem 0.3rem;
+}
+
+
+/* Clear floats after the columns */
+
+.container:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+
+@media screen and (max-width: 700px) {
+    .column {
+        width: 100%;
+    }
+    .form-control {
+        width: 100%; /*zey*/
+    }
+}
+
+
+/* My-Form */
+
+#my-form {
+    color: rgb(255, 255, 255);
+    padding: 1rem;
+    background: #718398;
+    min-height: 540px;
+}
+
+#my-form label {
+    text-align: center;
+}
+
+input[type='button'] {
+    margin-top: 7px;
+    margin-bottom: 7px;
+    margin-right: 7px;
+    height: 35px;
+    width: 35px;
+    padding: 8px;
+    border-radius: 20px;
+    background-color: #3c4753;
+    color: #ccc;
+    font-size: 12px;
+}
+
+input[type='submit'] {
+    height: 40px;
+    width: 250px;
+    border-radius: 20px;
+    background-color: #3c4753;
+    color: #ccc;
+}
+
+input[type='text'] {
+    height: 30px;
+    width: 100px;
+    border-radius: 20px;
+    margin-right: 15px;
+    color: #ccc;
+}
+
+input[type='number'] {
+    height: 30px;
+    width: 100px;
+    border-radius: 20px;
+    margin-right: 15px;
+    color: rgb(0, 0, 0);
+}
+
+input[type='time'] {
+    height: 30px;
+    width: 100px;
+    border-radius: 20px;
+    margin-right: 15px;
+    color: rgb(0, 0, 0);
+}
+
+input[type='radio'] {
+    display: inline !important;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    margin-right: 7px;
+    height: 20px;
+    width: 20px;
+    margin: 10px;
+    border-radius: 20px;
+    background-color: #3c4753;
+    color: #ccc;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 55px;
+}
+
+#profile {
+    height: 70px;
+}
+
+.but {
+    float: left;
+}
+
+.edit {
+    height: 60px;
+    float: right;
+}
+
+.error {
+    position: relative;
+    background: #A40606;
+    color: #fff;
+    margin: 3px;
+}
+
+
+/* Table */
+
+table th,
+table td {
+    width: 80px;
+    padding: 5px;
+    border: 1px solid #ccc;
+}
+
+.selected {
+    background-color: #666;
+    color: #fff;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* User List */
+
+
+/* Switch */
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    margin: auto;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: #3c4753;
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #3c4753;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+
+/* Rounded sliders */
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+
+/* Tabs */
+
+
+/* Style the tab */
+
+.tab {
+    overflow: hidden;
+}
+
+.one {
+    float: left;
+}
+
+
+/* Style the buttons inside the tab */
+
+
+/* Change background color of buttons on hover */
+
+.profile.but:hover {
+    background-color: #ccc;
+    color: #3c4753;
+}
+
+
+/* Create an active/current tablink class */
+
+.profile.but.active {
+    background-color: #ccc;
+    color: #3c4753
+}
+
+.profile.but.empty {
+    background-color: rgb(255, 0, 0);
+    color: #3c4753
+}
+
+
+/* Style the tab content */
+
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border-top: none;
+}
+
+
+/* dragon fly drag and drop */
+
+.drag-container {
+    box-sizing: border-box;
+    font-size: 14px;
+    border: 1px solid #3c4753;
+    border-radius: 3px;
+    width: 400px;
+    padding: 8px;
+    margin: 0 auto;
+}
+
+.drag-box {
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
+    padding: 4px 8px;
+    margin: 4px;
+    cursor: pointer;
+    background-color: #3c4753;
+}
+
+.drag-box:hover {
+    background-color: #ccc;
+}
+
+.drag-helper {
+    box-sizing: border-box;
+    position: absolute;
+    display: none;
+    top: auto;
+    left: auto;
+}
+
+.drag-box-dragging .drag-box {
+    background-color: #3c4753;
+    color: #ccc;
+    opacity: 0.5;
+    transform: scale(1.5);
+}
+
+
+/* Progress Bar */
+
+.progressBar {
+    width: 80%;
+    margin: 10px auto;
+    height: 22px;
+    background-color: #ccc;
+}
+
+.progressBar div {
+    height: 100%;
+    text-align: right;
+    padding: 0 10px;
+    line-height: 22px;
+    /* same as #progressBar height if we want text middle aligned */
+    width: 0;
+    background-color: #3c4753;
+    box-sizing: border-box;
+}
+
+
+/* Do not take in account */
+
+a.solink {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #f3f5f6;
+    color: #cfd6d9;
+    border: 1px solid #cfd6d9;
+    line-height: 30px;
+    text-decoration: none;
+    transition: all .3s;
+    z-index: 999
+}
+
+a.solink::first-letter {
+    text-transform: capitalize
+}
+
+a.solink:hover {
+    color: #428bca
+}
+
+
+/* Option */
+
+.box select {
+    background-color: #3c4753;
+    color: white;
+    padding: 3px;
+    width: 200px;
+    border: none;
+    font-size: 12px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    -webkit-appearance: button;
+    appearance: button;
+    outline: none;
+}
+
+.box::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20%;
+    height: 100%;
+    font-size: 28px;
+    line-height: 45px;
+    color: rgba(255, 255, 255, 0.5);
+    background-color: #3c4753;
+    pointer-events: none;
+}
+
+.box:hover::before {
+    color: rgba(255, 255, 255, 0.6);
+    background-color: #3c4753;
+}
+
+.box select option {
+    padding: 30px;
+}
