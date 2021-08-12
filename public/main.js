@@ -18,8 +18,10 @@ var clicks = 0;
 var progressInterval;
 var timeTotal = 0;
 var profileNum = 1;
-var dataTable = document.createElement('table');
+var dataTable = document.getElementById('jsonTable1');
 var setTable = '';
+var time_switch_value;
+
 
 var result = "";
 let setSwitchValue = '0';
@@ -72,6 +74,7 @@ $('#auto_switch').on('change', function() {
         auto_switch_value = '1';
         setSwitchValue = auto_switch_value;
         $('.middle').show();
+        $('.right').show();
     } else {
         $('.middle').hide();
         $('.right').hide();
@@ -101,7 +104,7 @@ $('#nav-tab a').on('click', function (e) {
 
 function openProfile(evt, profileName, num) {
     $('.right').show();
-    defaultTable();
+    //defaultTable();
     profileNum = num;
     //showProfile(profileNum);
     console.log("Entered Profile", num);
@@ -149,7 +152,7 @@ async function addToProfileTable(num) {
                 let td1 = document.createElement('td');
                 //td1.textContent = data[i].todo;
                 //td1.textContent = timePowerData[i].time;
-                td1.textContent = setRowNo;
+                td1.textContent = setRowNo; 
                 r1.appendChild(td1);
                 
 
@@ -170,7 +173,7 @@ async function addToProfileTable(num) {
                 // let td4 = document.createElement('button');
                 // r1.appendChild(td4);
 
-
+                
                 dataTable.appendChild(r1);
                 setRowNo++;
 
@@ -209,39 +212,41 @@ async function addToProfileTable(num) {
                 $('.error').hide();
 
                 let r1 = document.createElement('tr');
+
                 let td1 = document.createElement('td');
-                //td1.textContent = data[i].todo;
-                //td1.textContent = timePowerData[i].time;
-                td1.textContent = setRowNo;
+                td1.textContent = 'P' + setProfileNum;
                 r1.appendChild(td1);
 
                 let td2 = document.createElement('td');
-                //td2.textContent = data[i].deadline;
-                //td2.textContent = timePowerData[i].power;
-                td2.textContent = timeAdded;
-                timeTotal += parseInt(td2.textContent);
+                //td1.textContent = data[i].todo;
+                //td1.textContent = timePowerData[i].time;
+                td2.textContent = setRowNo;
                 r1.appendChild(td2);
 
                 let td3 = document.createElement('td');
                 //td2.textContent = data[i].deadline;
                 //td2.textContent = timePowerData[i].power;
-                td3.textContent = powerAdded;
+                td3.textContent = timeAdded;
+                timeTotal += parseInt(td3.textContent);
                 r1.appendChild(td3);
 
+                let td4 = document.createElement('td');
+                //td2.textContent = data[i].deadline;
+                //td2.textContent = timePowerData[i].power;
+                td4.textContent = powerAdded;
+                r1.appendChild(td4);
+
                 
-                let button = document.createElement('button');
-                button.type='button';
-                button.classList ='btn btn-primary btn-sm';
-                button.innerHTML= '<i class="fa fa-trash"></i>'; 
-                //button.onclick=deleteFromProfileTable(r1);
-                r1.appendChild(button);
+                let a = document.createElement('a');
+                a.type='button';
+                //button.classList ='btn btn-primary btn-sm';
+                a.innerHTML= '<i class="fa fa-trash"></i>'; 
+                a.onclick=deleteFromProfileTable(r1);
+                r1.appendChild(a);
 
                 dataTable.appendChild(r1);
                 setRowNo++;
-
-
-                
-                
+   
 
                 $(function() {
                     $("#jsonTable" + num).sortable({
@@ -346,28 +351,20 @@ async function setForEnd() {
 var timeAdded = 0;
   async function checkTime(num) {
     timeAdded = document.getElementById("addTime" + num).value;
-    
-
-    
-        if(time_switch_value === 'MIN') {
-            
+        if(time_switch_value === 'MIN') {  
             if (timeAdded <= 0 || timeAdded > 60) {
                 document.getElementById('errorMsg').innerHTML = "Time Value must be between  0-60";
                 $('.error').show();
             } else {
                 $('.error').hide();
             }
-        
         } else {
-           
             if (timeAdded <= 0 || timeAdded > 240) {
                 document.getElementById('errorMsg').innerHTML = "Time Value must be between  0-240";
                 $('.error').show();
             } else {
                 $('.error').hide();
             }
-    
-          
         }
   
 
