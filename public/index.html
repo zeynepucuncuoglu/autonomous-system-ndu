@@ -33,7 +33,7 @@
 
 <body>
     <header>
-        <h3>Autonomous System</h3>
+        <h1 class="text-center text-secondary">Autonomous System</h1>
     </header>
     <section class="error">
         <p id="errorMsg"></p>
@@ -117,9 +117,10 @@
                                                     <form class="form-inline">
                                                         <label for="addPower1" class="m-2">Add Power</label>
                                                         <input type="text" class="form-control m-2 col-sm-1" id="addPower1" onchange="checkPower(1)" required>
+                                                        <!-- <div class="alert alert-danger mx-auto" role="alert"></div> -->
                                                         <label for="addTime1" class="m-2">Add Time</label>
                                                         <input type="text" class="form-control m-2 col-sm-1" id="addTime1" onchange="checkTime(1)" required>
-                                                        <div class="d-grid gap-2 col-sm-1 ">
+                                                        <div class="d-grid gap-2 col-sm-1 mx-auto">
                                                         <button class="btn btn-primary btn-sm" type="button" onclick="addToProfileTable(1)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                                                             <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
                                                             </svg></button>       
@@ -150,7 +151,7 @@
                                                         <input type="text" class="form-control m-2 col-sm-1" id="addPower2" onchange="checkPower(2)" required>
                                                         <label for="addTime2" class="m-2">Add Time</label>
                                                         <input type="text" class="form-control m-2 col-sm-1" id="addTime2" onchange="checkTime(2)" required>
-                                                        <div class="d-grid gap-2 col-sm-1 ">
+                                                        <div class="d-grid gap-2 col-sm-1 mx-auto">
                                                         <button class="btn btn-primary btn-sm" type="button" onclick="addToProfileTable(2)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                                                             <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
                                                             </svg></button>       
@@ -175,7 +176,7 @@
                                                         <input type="text" class="form-control m-2 col-sm-1" id="addPower3" onchange="checkPower(3)" required>
                                                         <label for="addTime3" class="m-2">Add Time</label>
                                                         <input type="text" class="form-control m-2 col-sm-1" id="addTime3" onchange="checkTime(3)" required>
-                                                        <div class="d-grid gap-2 col-sm-1 ">
+                                                        <div class="d-grid gap-2 col-sm-1 mx-auto">
                                                         <button class="btn btn-primary btn-sm" type="button" onclick="addToProfileTable(3)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                                                             <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
                                                             </svg></button>       
@@ -202,7 +203,7 @@
                                                         <label for="addTime4" class="m-2">Add Time</label>
                                                         <input type="text" class="form-control m-2 col-sm-1" id="addTime4"
                                                             onchange="checkTime(4)" required>
-                                                        <div class="d-grid gap-2 col-sm-1 ">
+                                                        <div class="d-grid gap-2 col-sm-1 mx-auto">
                                                             <button class="btn btn-primary btn-sm" type="button"
                                                                 onclick="addToProfileTable(4)"><svg
                                                                     xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -234,8 +235,8 @@
                                                         <label for="addTime5" class="m-2">Add Time</label>
                                                         <input type="text" class="form-control m-2 col-sm-1" id="addTime5"
                                                             onchange="checkTime(5)" required>
-                                                        <div class="d-grid gap-2 col-sm-1 ">
-                                                            <button class="btn btn-primary btn-sm" type="button"
+                                                        <div class="d-grid gap-2 col-sm-1 mx-auto">
+                                                            <button class="btn btn-primary btn-sm " type="button"
                                                                 onclick="addToProfileTable(5)"><svg
                                                                     xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                                     fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
@@ -265,7 +266,7 @@
                                                         <label for="addTime6" class="m-2">Add Time</label>
                                                         <input type="text" class="form-control m-2 col-sm-1" id="addTime6"
                                                             onchange="checkTime(6)" required>
-                                                        <div class="d-grid gap-2 col-sm-1 ">
+                                                        <div class="d-grid gap-2 col-sm-1 mx-auto">
                                                             <button class="btn btn-primary btn-sm" type="button"
                                                                 onclick="addToProfileTable(6)"><svg
                                                                     xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -296,7 +297,7 @@
                                                         <label for="addTime7" class="m-2">Add Time</label>
                                                         <input type="text" class="form-control m-2 col-sm-1" id="addTime7"
                                                             onchange="checkTime(7)" required>
-                                                        <div class="d-grid gap-2 col-sm-1 ">
+                                                        <div class="d-grid gap-2 col-sm-1 mx-auto">
                                                             <button class="btn btn-primary btn-sm" type="button"
                                                                 onclick="addToProfileTable(7)"><svg
                                                                     xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -329,7 +330,7 @@
                                                         <label for="addTime8" class="m-2">Add Time</label>
                                                         <input type="text" class="form-control m-2 col-sm-1" id="addTime8"
                                                             onchange="checkTime(8)" required>
-                                                        <div class="d-grid gap-2 col-sm-1 ">
+                                                        <div class="d-grid gap-2 col-sm-1 mx-auto">
                                                             <button class="btn btn-primary btn-sm" type="button"
                                                                 onclick="addToProfileTable(8)"><svg
                                                                     xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -359,6 +360,7 @@
                                               <tr>
                                                 <th scope="col">#</th>
                                                 <th scope="col">Index</th>
+                                                <th scope="col">Sec/Min</th>
                                                 <th scope="col">Time</th>
                                                 <th scope="col">Power</th>
                                                 <th scope="col"></th>
@@ -420,6 +422,7 @@
                                 Next Profile
                             </div>
 
+                            
                             <div class="box">
                                 <select id="nextProfile" onchange="getNextProfile()">
                                     <option value="0">0</option>
@@ -433,6 +436,7 @@
                                     <option value="8">P8</option>
                                 </select>
                             </div>
+                            
                             </br>
 
                             <!-- Next Profile selector -->

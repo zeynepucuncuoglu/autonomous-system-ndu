@@ -97,10 +97,7 @@ $('#time_switch').on('change', function() {
     }
 });
 
-$('#nav-tab a').on('click', function (e) {
-    e.preventDefault()
-    $(this).tab('show')
-  })
+
 
 function openProfile(evt, profileName, num) {
     $('.right').show();
@@ -123,6 +120,8 @@ function openProfile(evt, profileName, num) {
     }
     document.getElementById(profileName).style.display = "block";
     evt.currentTarget.className += " active";
+
+    document.getElementById('addTime' + num).value = '';
 
 };
 
@@ -149,37 +148,50 @@ async function addToProfileTable(num) {
                 $('.error').hide();
 
                 let r1 = document.createElement('tr');
+
                 let td1 = document.createElement('td');
-                //td1.textContent = data[i].todo;
-                //td1.textContent = timePowerData[i].time;
-                td1.textContent = setRowNo; 
+                td1.textContent = 'P' + setProfileNum;
                 r1.appendChild(td1);
-                
 
                 let td2 = document.createElement('td');
-                //td2.textContent = data[i].deadline;
-                //td2.textContent = timePowerData[i].power;
-                td2.textContent = timeAdded;
-                timeTotal += parseInt(td2.textContent);
+                //td1.textContent = data[i].todo;
+                //td1.textContent = timePowerData[i].time;
+                td2.textContent = setRowNo;
                 r1.appendChild(td2);
 
                 let td3 = document.createElement('td');
-                //td2.textContent = data[i].deadline;
-                //td2.textContent = timePowerData[i].power;
-                td3.textContent = powerAdded;
+                td3.textContent='Minute';
                 r1.appendChild(td3);
 
-                
-                // let td4 = document.createElement('button');
-                // r1.appendChild(td4);
+                let td4 = document.createElement('td');
+                //td2.textContent = data[i].deadline;
+                //td2.textContent = timePowerData[i].power;
+                td4.textContent = timeAdded;
+                timeTotal += parseInt(td4.textContent);
+                r1.appendChild(td4);
 
+                let td5 = document.createElement('td');
+                //td2.textContent = data[i].deadline;
+                //td2.textContent = timePowerData[i].power;
+                td5.textContent = powerAdded;
+                r1.appendChild(td5);
+
+                let deleteButton = document.createElement('button');
+                 deleteButton.classList = "btn btn-danger btn-sm"
+                 deleteButton.id = "delete-btn"
+                 deleteButton.innerHTML = "<i class='fa fa-trash'></i>"
+                 deleteButton.onclick = function() {
+                     $(this).closest("tr").remove();
+                 };
+                 deleteButton.style = "margin:5px 0 0 4px"
+                r1.appendChild(deleteButton);
                 
+               
+
                 dataTable.appendChild(r1);
+                setRowNo++;dChild(r1);
                 setRowNo++;
-
-
-                
-                
+       
 
                 $(function() {
                     $("#jsonTable" + num).sortable({
@@ -224,29 +236,41 @@ async function addToProfileTable(num) {
                 r1.appendChild(td2);
 
                 let td3 = document.createElement('td');
-                //td2.textContent = data[i].deadline;
-                //td2.textContent = timePowerData[i].power;
-                td3.textContent = timeAdded;
-                timeTotal += parseInt(td3.textContent);
+                td3.textContent='Second';
                 r1.appendChild(td3);
 
                 let td4 = document.createElement('td');
                 //td2.textContent = data[i].deadline;
                 //td2.textContent = timePowerData[i].power;
-                td4.textContent = powerAdded;
+                td4.textContent = timeAdded;
+                timeTotal += parseInt(td4.textContent);
                 r1.appendChild(td4);
 
+                let td5 = document.createElement('td');
+                //td2.textContent = data[i].deadline;
+                //td2.textContent = timePowerData[i].power;
+                td5.textContent = powerAdded;
+                r1.appendChild(td5);
+
+
+                 let deleteButton = document.createElement('button');
+                 deleteButton.classList = "btn btn-danger btn-sm"
+                 deleteButton.id = "delete-btn"
+                 deleteButton.innerHTML = "<i class='fa fa-trash'></i>"
+                 deleteButton.onclick = function() {
+                     $(this).closest("tr").remove();
+                 };
+                 deleteButton.style = "margin:5px 0 0 4px"
+                r1.appendChild(deleteButton);
                 
-                let a = document.createElement('a');
-                a.type='button';
-                //button.classList ='btn btn-primary btn-sm';
-                a.innerHTML= '<i class="fa fa-trash"></i>'; 
-                a.onclick=deleteFromProfileTable(r1);
-                r1.appendChild(a);
+               
 
                 dataTable.appendChild(r1);
                 setRowNo++;
-   
+
+
+                
+                
 
                 $(function() {
                     $("#jsonTable" + num).sortable({
@@ -270,12 +294,25 @@ async function addToProfileTable(num) {
             }
 
         }
+
+        //ıt can cause prblm on submission part chech THIS AGAIN!!!!
+        document.getElementById('addPower' + num).value='0-6';
+        document.getElementById('addPower' + num).addClass='text-warning';
+        if(time_switch_value === 'MIN'){
+            document.getElementById('addTime' + num).value='0-60'; 
+        }else{
+            document.getElementById('addTime' + num).value='0-240';
+        }
+
+        
     } else {
         document.getElementById('errorMsg').innerHTML = "Row Number must be between 0-12";
         $('.error').show();
     }
-    table = document.getElementById('jsonTable' + num).appendChild(dataTable);
-    document.getElementById('jsonTable' + num).appendChild(dataTable);
+    table = document.getElementById('jsonTable1').appendChild(dataTable);
+    document.getElementById('jsonTable1').appendChild(dataTable);
+
+    
 }
 
 async function deleteFromProfileTable(num) {
@@ -351,20 +388,28 @@ async function setForEnd() {
 var timeAdded = 0;
   async function checkTime(num) {
     timeAdded = document.getElementById("addTime" + num).value;
-        if(time_switch_value === 'MIN') {  
+    
+
+    
+        if(time_switch_value === 'MIN') {
+            
             if (timeAdded <= 0 || timeAdded > 60) {
                 document.getElementById('errorMsg').innerHTML = "Time Value must be between  0-60";
                 $('.error').show();
             } else {
                 $('.error').hide();
             }
+        
         } else {
+           
             if (timeAdded <= 0 || timeAdded > 240) {
                 document.getElementById('errorMsg').innerHTML = "Time Value must be between  0-240";
                 $('.error').show();
             } else {
                 $('.error').hide();
             }
+    
+          
         }
   
 
@@ -374,7 +419,7 @@ var timeAdded = 0;
 var powerAdded = 0;
 async function checkPower(num) {
     powerAdded = document.getElementById("addPower" + num).value;
-    if (powerAdded <= 0 || powerAdded > 5) {
+    if (powerAdded < 0 || powerAdded > 5) {
         document.getElementById('errorMsg').innerHTML = "Power Value must be between 0-5";
         $('.error').show();
     } else {
