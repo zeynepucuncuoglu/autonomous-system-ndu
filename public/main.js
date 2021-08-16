@@ -47,8 +47,9 @@ function setup() {
     $('.right').hide();
     $('.middle').hide();
     $('#alert1').hide();
-    $('#subAlert').hide();
+    // $('#subAlert').hide();
     $('.alert').hide();
+    drawChart();
 
 }
 
@@ -157,12 +158,60 @@ function openNewTab(){
     document.getElementById("nav-tab").appendChild(newTab);
 };
 
+function drawChart(){
+    const CHART = document.getElementById("lineChart");
+        console.log(CHART);
+        let lineChart = new Chart(CHART, {
+            type: 'line',
+            data: {
+                labels: ['0','1','2','3','4','5','6'],
+                datasets: [{
+                    label: '# of P',
+                    data: [],
+                    backgroundColor: [
+                        'rgba(80, 0, 0, 1)',
+                        'rgba(0, 0, 235, 1)',
+                        'rgba(0, 0, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderColor: [
+                        'rgba(99, 0, 0, 1)',
+                        'rgba(1, 1, 1, 1)',
+                        'rgba(1, 1, 1, 1)',
+                        'rgba(0, 192, 0, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+}
+
+function addData(chart, label, data) {
+    chart.data.labels.push(label);
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.push(data);
+    });
+    chart.update();
+}
 
 async function addToProfileTable(num) {
     let timeAdded = document.getElementById("addTime" + num).value;
     let powerAdded = document.getElementById("addPower" + num).value;
     setTimeAdded = timeAdded;
     setPowerAdded = powerAdded;
+    
     if (setRowNo <= 12) {
         if(time_switch_value === 'MIN'){
             if (timeAdded <= 0 || timeAdded > 60) {
@@ -189,6 +238,8 @@ async function addToProfileTable(num) {
                 let td3 = document.createElement('td');
                 td3.textContent='Minute';
                 r1.appendChild(td3);
+
+                addData(lineChart,powerAdded,parseInt(timeAdded));
 
                 let td4 = document.createElement('td');
                 //td2.textContent = data[i].deadline;
@@ -247,6 +298,9 @@ async function addToProfileTable(num) {
                 td3.textContent='Second';
                 r1.appendChild(td3);
 
+                addData(lineChart,powerAdded,parseInt(timeAdded));
+            
+
                 let td4 = document.createElement('td');
                 //td2.textContent = data[i].deadline;
                 //td2.textContent = timePowerData[i].power;
@@ -291,42 +345,7 @@ async function addToProfileTable(num) {
            document.getElementById('addTime' + num).placeholder='0-240';
         }   
         
-        const CHART = document.getElementById("lineChart");
-        console.log(CHART);
-        let lineChart = new Chart(CHART, {
-            type: 'line',
-            data: {
-                labels: ['0', '1', '2', '3', '4', '5', '6'],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
+        
           
     } else {
         $('#alert').innerHTML = "Row Number must be between 0-12";
@@ -346,7 +365,7 @@ async function setForBegin() {
         $('#subAlert').hide();
     } else {
         document.getElementById('subAlert').innerHTML = "The beginning time is not valid";
-        $('#subAlert').show();
+        document.getElementById('subAlert').style.display = 'block';
     }
 }
 
@@ -359,7 +378,7 @@ async function setForEnd() {
         $('#subAlert').hide();
     } else {
         document.getElementById('subAlert').innerHTML = "The beginning time is not valid";
-        $('#subAlert').show();
+        $document.getElementById('subAlert').style.display = 'block';
     }
 }
 
@@ -399,11 +418,11 @@ function controlForTime() {
     let totalMin = endResult - beginResult;
     if (endResult <= beginResult) {
         document.getElementById('subAlert').innerHTML = "The ending time cannot be earlier than or equal to the beginning time";
-        $('#subAlert').show();
+        document.getElementById('subAlert').style.display = 'block';
         return false;
     } else if (totalMin < timeTotal) {
         document.getElementById('subAlert').innerHTML = "The total time cannot be longer than the profile period ";
-        $('#subAlert').show();
+        document.getElementById('subAlert').style.display = 'block';
         return false;
     } else {
         $('#subAlert').hide();
@@ -434,7 +453,7 @@ async function setRepeatCount() {
     repeat = document.getElementById("repeatCount").value;
     if (repeat < 0 || repeat > 12) {
         document.getElementById('subAlert').innerHTML = "Repeat must be between 0-12";
-        $('#subAlert').show();
+        document.getElementById('subAlert').style.display = 'block';
     } else {
         $('#subAlert').hide();
         setRepeat = repeat;
@@ -486,24 +505,24 @@ async function submitResult() {
         profiles.push(profile);
         console.log("ps", profiles);
         /* localStorage.setItem('profiles', JSON.stringify(profiles)); */
-        const data = { profile };
+        // const data = { profile };
 
-        const options = {
-            method: 'POST',
-            headers: {
-                "Content-Type": 'application/json'
-            },
-            body: JSON.stringify(data)
-        };
+        // const options = {
+        //     method: 'POST',
+        //     headers: {
+        //         "Content-Type": 'application/json'
+        //     },
+        //     body: JSON.stringify(data)
+        // };
 
-        const response = await fetch('/autonomous', options);
-        const json = await response.json();
-        console.log(json);
+        // const response = await fetch('/autonomous', options);
+        // const json = await response.json();
+        // console.log(json);
 
     } else {
         console.log("There are some problems with the values entered");
         document.getElementById('subAlert').innerHTML = "There are some problems with the values entered";
-        $('#subAlert').show();
+        document.getElementById('subAlert').style.display = 'block';
     }
 }
 
