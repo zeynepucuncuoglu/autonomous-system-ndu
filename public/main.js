@@ -1,3 +1,6 @@
+// const { Chart } = require("chart.js");
+
+
 
 
 
@@ -37,25 +40,29 @@ let setMethod = '1';
 let setNextProfile = '0';
 let setTimeTypeValue = 'SEC';
 
-
+//$('.alert').hide();
 
 function setup() {
     //showProfile();
     $('.right').hide();
     $('.middle').hide();
-    $('.alert').alert('close');   
+    $('#alert1').hide();
+    $('#subAlert').hide();
+    $('.alert').hide();
 
 }
 
 
 $('#auto_switch').on('change', function() {
     if ($(this).is(':checked')) {
+        $('.alert').hide();
         auto_switch_value = '1';
         setSwitchValue = auto_switch_value;
         $('.middle').show();
         $('.right').show();
-        
+
     } else {
+        $('.alert').hide();
         $('.middle').hide();
         $('.right').hide();
         auto_switch_value = '0';
@@ -64,22 +71,27 @@ $('#auto_switch').on('change', function() {
 });
 
 $('#time_switch').on('change', function() {
-    if ($(this).is(':checked')) {
-        
+    if ($(this).is(':checked')) {      
         time_switch_value = 'MIN';
         setTimeTypeValue = time_switch_value;
-        
+        for(var i=1;i<13;i++){
+            document.getElementById('addPower' + i).placeholder="0-6";
+            document.getElementById('addTime' + i).placeholder='0-60'; 
+        }  
     } else {
-       
         time_switch_value = 'SEC';
         setTimeTypeValue = time_switch_value;
-      
+        for(var i=1;i<13;i++){
+            document.getElementById('addPower' + i).placeholder="0-6";
+            document.getElementById('addTime' + i).placeholder='0-240'; 
+        }  
     }
 });
 
 
 
 function openProfile( evt,profileName, num) {
+    $('#subAlert').hide();
     $('.right').show();
     profileNum = num;
     //showProfile(profileNum);
@@ -101,9 +113,13 @@ function openProfile( evt,profileName, num) {
 };
 
 function openNewTab1(){
-    tabNum ++;
-    document.getElementsByClassName('profile')[tabNum].style.visibility = 'visible';
-
+    if(tabNum<11){
+        tabNum ++;
+        document.getElementsByClassName('profile')[tabNum].style.visibility = 'visible';
+    }else{
+        document.getElementById('profileAlert').innerHTML = "Number of profile can be maximum 12";
+         $('#profileAlert').show();
+    }
 
 }
 
@@ -133,7 +149,7 @@ function openNewTab(){
     var powLabel = document.createElement('label');
     powLabel.className="m-2";
     powLabel.setAttribute("for","addPower" + newTab);
-    powLabel.innerHTML = "Addd pow";
+    powLabel.innerHTML = "Add pow";
     form.appendChild(powLabel);
 
    // newTab.addEventListener("click",openProfile(event,"Profile" + tabNum,tabNum));
@@ -145,21 +161,18 @@ function openNewTab(){
 async function addToProfileTable(num) {
     let timeAdded = document.getElementById("addTime" + num).value;
     let powerAdded = document.getElementById("addPower" + num).value;
-
-    $('#subAlert').hide();
-    $('.alert').hide();
     setTimeAdded = timeAdded;
     setPowerAdded = powerAdded;
     if (setRowNo <= 12) {
         if(time_switch_value === 'MIN'){
             if (timeAdded <= 0 || timeAdded > 60) {
-                document.getElementById('alert' + num).innerHTML = "Time Value must be between 0-60";
-                document.getElementById('alert' + num).alert();
+                document.getElementById('alert1').innerHTML = "Time Value must be between 0-60";
+                $('#alert1').show();
             } else if (powerAdded <= 0 || powerAdded > 5) {
-                document.getElementById('alert' + num).innerHTML = "Power Value must be between 0-6";
-                document.getElementById('addTime' + num).show();
+                document.getElementById('alert1').innerHTML = "Power Value must be between 0-6";
+                $('#alert1').show();
             } else {
-                $('.alert').hide();
+                $('#alert1').hide();
 
                 let r1 = document.createElement('tr');
 
@@ -180,7 +193,11 @@ async function addToProfileTable(num) {
                 let td4 = document.createElement('td');
                 //td2.textContent = data[i].deadline;
                 //td2.textContent = timePowerData[i].power;
-                td4.textContent = '0'+ timeAdded;
+                if(timeAdded < 10){
+                    td4.textContent = '00' + timeAdded;
+                }else{
+                    td4.textContent = timeAdded;
+                }
                 timeTotal += parseInt(td4.textContent);
                 r1.appendChild(td4);
 
@@ -199,42 +216,20 @@ async function addToProfileTable(num) {
                  };
                  deleteButton.style = "margin:5px 0 0 4px"
                 r1.appendChild(deleteButton);
-                
-               
 
                 document.getElementById('bodyOfTable').appendChild(r1); 
                 setRowNo++;
-       
 
-                $(function() {
-                    $("#jsonTable" + num).sortable({
-                        items: 'tr:not(tr:first-child)',
-                        cursor: 'pointer',
-                        axis: 'y',
-                        dropOnEmpty: false,
-                        start: function(e, ui) {
-                            ui.item.addClass("selected");
-                        },
-                        stop: function(e, ui) {
-                            ui.item.removeClass("selected");
-                            $(this).find("tr").each(function(index) {
-                                if (index > 0) {
-                                    $(this).find("td").eq(0).html(index);
-                                }
-                            });
-                        }
-                    });
-                });
             }
         }else{
             if (timeAdded <= 0 || timeAdded > 240) {
-                document.getElementById('alert' + num).innerHTML = "Time Value must be between 0-60";
-                document.getElementById('addTime' + num).show();
+                document.getElementById('alert1').innerHTML = "Time Value must be between 0-60";
+                $('#alert1').show();
             } else if (powerAdded <= 0 || powerAdded > 5) {
-                document.getElementById('alert' + num).innerHTML = "Power Value must be between 0-6";
-                document.getElementById('addTime' + num).show();
+                document.getElementById('alert1').innerHTML = "Power Value must be between 0-6";
+                $('#alert1').show();
             } else {
-                $('.alert').hide();
+                $('#alert1').hide();
 
                 let r1 = document.createElement('tr');
 
@@ -255,7 +250,9 @@ async function addToProfileTable(num) {
                 let td4 = document.createElement('td');
                 //td2.textContent = data[i].deadline;
                 //td2.textContent = timePowerData[i].power;
-                if(timeAdded < 100){
+                if(timeAdded < 10){
+                    td4.textContent = '00' + timeAdded;
+                }else if(timeAdded<100){
                     td4.textContent = '0' + timeAdded;
                 }else{
                     td4.textContent = timeAdded;
@@ -282,26 +279,6 @@ async function addToProfileTable(num) {
                     
                 setRowNo++;
                 document.getElementById('bodyOfTable').appendChild(r1); 
-
-                $(function() {
-                    $("#jsonTable" + num).sortable({
-                        items: 'tr:not(tr:first-child)',
-                        cursor: 'pointer',
-                        axis: 'y',
-                        dropOnEmpty: false,
-                        start: function(e, ui) {
-                            ui.item.addClass("selected");
-                        },
-                        stop: function(e, ui) {
-                            ui.item.removeClass("selected");
-                            $(this).find("tr").each(function(index) {
-                                if (index > 0) {
-                                    $(this).find("td").eq(0).html(index);
-                                }
-                            });
-                        }
-                    });
-                });
             }
 
         }
@@ -312,30 +289,50 @@ async function addToProfileTable(num) {
            document.getElementById('addTime' + num).placeholder='0-60'; 
         }else{
            document.getElementById('addTime' + num).placeholder='0-240';
-        }        
+        }   
+        
+        const CHART = document.getElementById("lineChart");
+        console.log(CHART);
+        let lineChart = new Chart(CHART, {
+            type: 'line',
+            data: {
+                labels: ['0', '1', '2', '3', '4', '5', '6'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+          
     } else {
-        document.getElementById('alert' + num).innerHTML = "Row Number must be between 0-12";
-        $('.alert').show();
+        $('#alert').innerHTML = "Row Number must be between 0-12";
+        $('#alert').show();
     } 
 }
-
-
-function progress(timetotal, $element) {
-    timeTotal = timetotal;
-    timeleft = timetotal;
-    clearInterval(progressInterval);
-    progressInterval = setInterval(function() {
-        // progress(timeleft - 1, timetotal, $element);
-        var progressBarWidth = timeleft * $element.width() / timetotal;
-        $element.find('div').animate({
-            width: progressBarWidth
-        }, 500).html(Math.floor(timeleft / 60) + ":" + timeleft % 60);
-        timeleft = timeleft - 1;
-        if (timeleft == 0) {
-            clearInterval(progressInterval);
-        }
-    }, 1000);
-};
 
 var beginResult = 0,
     endResult = 0;
@@ -372,17 +369,17 @@ var timeAdded = 0;
         if(time_switch_value === 'MIN') {
             
             if (timeAdded <= 0 || timeAdded > 60) {
-                document.getElementById('alert' + num).innerHTML = "Time Value must be between  0-60";
-                document.getElementById('alert' + num).alert();
+                document.getElementById('alert1').innerHTML = "Time Value must be between  0-60";
+                $('#alert1').show();
             } else {
-               $('.alert').hide();
+                $('#alert1').hide();
             }
         } else {
             if (timeAdded <= 0 || timeAdded > 240) {
-                document.getElementById('alert' + num).innerHTML = "Time Value must be between  0-240";
-                document.getElementById('alert' + num).show();
+                document.getElementById('alert1').innerHTML = "Time Value must be between  0-240";
+                $('#alert1').show();
             } else {
-               $('.alert').hide();
+                $('#alert1').hide();
             }
         }
 }
@@ -391,10 +388,10 @@ var powerAdded = 0;
 async function checkPower(num) {
     powerAdded = document.getElementById("addPower" + num).value;
     if (powerAdded < 0 || powerAdded > 5) {
-        document.getElementById('alert' + num).innerHTML = "Power Value must be between 0-6";
-        ocument.getElementById('alert' + num).show();
+        document.getElementById('alert1').innerHTML = "Power Value must be between 0-6";
+        $('#alert1').show();
     } else {
-        $('.alert').hide();
+        $('#alert1').hide();
     }
 }
 
@@ -436,10 +433,10 @@ function controlForTable() {
 async function setRepeatCount() {
     repeat = document.getElementById("repeatCount").value;
     if (repeat < 0 || repeat > 12) {
-        document.getElementById('errorMsg').innerHTML = "Repeat must be between 0-12";
-        $('.error').show();
+        document.getElementById('subAlert').innerHTML = "Repeat must be between 0-12";
+        $('#subAlert').show();
     } else {
-        $('.error').hide();
+        $('#subAlert').hide();
         setRepeat = repeat;
     }
 }
@@ -505,6 +502,8 @@ async function submitResult() {
 
     } else {
         console.log("There are some problems with the values entered");
+        document.getElementById('subAlert').innerHTML = "There are some problems with the values entered";
+        $('#subAlert').show();
     }
 }
 
