@@ -1,3 +1,6 @@
+
+
+
 var profiles = [];
 var profile = {
     id: 1,
@@ -21,7 +24,7 @@ var profileNum = 1;
 var dataTable = document.getElementById('jsonTable1');
 var setTable = '';
 var time_switch_value;
-
+var tabNum = 0;
 
 var result = "";
 let setSwitchValue = '0';
@@ -34,39 +37,15 @@ let setMethod = '1';
 let setNextProfile = '0';
 let setTimeTypeValue = 'SEC';
 
+
+
 function setup() {
     //showProfile();
     $('.right').hide();
     $('.middle').hide();
-    $('.error').hide();
+    $('.alert').alert('close');   
+
 }
-
-/* function getProfileObject(id) {
-    for (let i = 0; i < profiles.length; i++) {
-        if (id == profiles[i].id) {
-            return profiles[i]
-        }
-    }
-    return false;
-} */
-
-function defaultTable() {
-    /* Setup the table headers */
-    const r0 = document.createElement('tr');
-    const h1 = document.createElement('th');
-    h1.textContent = 'Index';
-    r0.appendChild(h1);
-    const h2 = document.createElement('th');
-    h2.textContent = "Time";
-    r0.appendChild(h2);
-    const h3 = document.createElement('th');
-    h3.textContent = "Power";
-    r0.appendChild(h3);
-
-    dataTable.appendChild(r0);
-    setRowNo++;
-}
-
 
 
 $('#auto_switch').on('change', function() {
@@ -75,6 +54,7 @@ $('#auto_switch').on('change', function() {
         setSwitchValue = auto_switch_value;
         $('.middle').show();
         $('.right').show();
+        
     } else {
         $('.middle').hide();
         $('.right').hide();
@@ -88,7 +68,7 @@ $('#time_switch').on('change', function() {
         
         time_switch_value = 'MIN';
         setTimeTypeValue = time_switch_value;
-    
+        
     } else {
        
         time_switch_value = 'SEC';
@@ -99,20 +79,16 @@ $('#time_switch').on('change', function() {
 
 
 
-function openProfile(evt, profileName, num) {
+function openProfile( evt,profileName, num) {
     $('.right').show();
-    //defaultTable();
     profileNum = num;
     //showProfile(profileNum);
     console.log("Entered Profile", num);
     setProfileNum = num;
     var i, tabcontent, tablinks;
-
-    //$('#nav-tab a[href="#profile"]').tab('show');
-
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
+       tabcontent[i].style.display = "none";
     }
     tablinks = document.getElementsByClassName("profile");
     for (i = 0; i < tablinks.length; i++) {
@@ -121,31 +97,69 @@ function openProfile(evt, profileName, num) {
     document.getElementById(profileName).style.display = "block";
     evt.currentTarget.className += " active";
 
-    document.getElementById('addTime' + num).value = '';
-
+    //document.getElementById("p" + num).addClass("active");
 };
 
+function openNewTab1(){
+    tabNum ++;
+    document.getElementsByClassName('profile')[tabNum].style.visibility = 'visible';
 
+
+}
+
+function openNewTab(){
+
+    tabNum ++; 
+    //creating new tab
+    let newTab = document.createElement('a');
+    newTab.classList = "nav-item nav-link active profile but";
+    newTab.id = "p" + tabNum ;
+    newTab.innerHTML = "p" + tabNum;
+    //creating profile part
+    var newProfile = document.createElement('div');
+    newProfile.id="Profile" + tabNum;
+    newProfile.classList = "tabcontent tab-pane fade show active";
+    newProfile.setAttribute("role","tabpanel");
+    newProfile.setAttribute("aria-labelledby", "p" + tabNum);
+    //container for bootstrap
+    var container = document.createElement('div');
+    container.className="container-fluid";
+    container.appendChild(newProfile);
+    //form for boot
+    var form = document.createElement('form');
+    form.className="form-inline";
+    newProfile.appendChild(form);
+    //creating labels and inputs
+    var powLabel = document.createElement('label');
+    powLabel.className="m-2";
+    powLabel.setAttribute("for","addPower" + newTab);
+    powLabel.innerHTML = "Addd pow";
+    form.appendChild(powLabel);
+
+   // newTab.addEventListener("click",openProfile(event,"Profile" + tabNum,tabNum));
+       
+    document.getElementById("nav-tab").appendChild(newTab);
+};
 
 
 async function addToProfileTable(num) {
     let timeAdded = document.getElementById("addTime" + num).value;
     let powerAdded = document.getElementById("addPower" + num).value;
 
-    $('.error').hide();
+    $('#subAlert').hide();
+    $('.alert').hide();
     setTimeAdded = timeAdded;
     setPowerAdded = powerAdded;
     if (setRowNo <= 12) {
-
         if(time_switch_value === 'MIN'){
             if (timeAdded <= 0 || timeAdded > 60) {
-                document.getElementById('errorMsg').innerHTML = "Time Value must be between 0-60";
-                $('.error').show();
+                document.getElementById('alert' + num).innerHTML = "Time Value must be between 0-60";
+                document.getElementById('alert' + num).alert();
             } else if (powerAdded <= 0 || powerAdded > 5) {
-                document.getElementById('errorMsg').innerHTML = "Power Value must be between 0-5";
-                $('.error').show();
+                document.getElementById('alert' + num).innerHTML = "Power Value must be between 0-6";
+                document.getElementById('addTime' + num).show();
             } else {
-                $('.error').hide();
+                $('.alert').hide();
 
                 let r1 = document.createElement('tr');
 
@@ -166,7 +180,7 @@ async function addToProfileTable(num) {
                 let td4 = document.createElement('td');
                 //td2.textContent = data[i].deadline;
                 //td2.textContent = timePowerData[i].power;
-                td4.textContent = timeAdded;
+                td4.textContent = '0'+ timeAdded;
                 timeTotal += parseInt(td4.textContent);
                 r1.appendChild(td4);
 
@@ -188,8 +202,7 @@ async function addToProfileTable(num) {
                 
                
 
-                dataTable.appendChild(r1);
-                setRowNo++;dChild(r1);
+                document.getElementById('bodyOfTable').appendChild(r1); 
                 setRowNo++;
        
 
@@ -215,13 +228,13 @@ async function addToProfileTable(num) {
             }
         }else{
             if (timeAdded <= 0 || timeAdded > 240) {
-                document.getElementById('errorMsg').innerHTML = "Time Value must be between 0-60";
-                $('.error').show();
+                document.getElementById('alert' + num).innerHTML = "Time Value must be between 0-60";
+                document.getElementById('addTime' + num).show();
             } else if (powerAdded <= 0 || powerAdded > 5) {
-                document.getElementById('errorMsg').innerHTML = "Power Value must be between 0-5";
-                $('.error').show();
+                document.getElementById('alert' + num).innerHTML = "Power Value must be between 0-6";
+                document.getElementById('addTime' + num).show();
             } else {
-                $('.error').hide();
+                $('.alert').hide();
 
                 let r1 = document.createElement('tr');
 
@@ -242,7 +255,11 @@ async function addToProfileTable(num) {
                 let td4 = document.createElement('td');
                 //td2.textContent = data[i].deadline;
                 //td2.textContent = timePowerData[i].power;
-                td4.textContent = timeAdded;
+                if(timeAdded < 100){
+                    td4.textContent = '0' + timeAdded;
+                }else{
+                    td4.textContent = timeAdded;
+                }
                 timeTotal += parseInt(td4.textContent);
                 r1.appendChild(td4);
 
@@ -262,15 +279,9 @@ async function addToProfileTable(num) {
                  };
                  deleteButton.style = "margin:5px 0 0 4px"
                 r1.appendChild(deleteButton);
-                
-               
-
-                dataTable.appendChild(r1);
+                    
                 setRowNo++;
-
-
-                
-                
+                document.getElementById('bodyOfTable').appendChild(r1); 
 
                 $(function() {
                     $("#jsonTable" + num).sortable({
@@ -294,44 +305,20 @@ async function addToProfileTable(num) {
             }
 
         }
-
-        //ıt can cause prblm on submission part chech THIS AGAIN!!!!
-        document.getElementById('addPower' + num).value='0-6';
-        document.getElementById('addPower' + num).addClass='text-warning';
-        if(time_switch_value === 'MIN'){
-            document.getElementById('addTime' + num).value='0-60'; 
+        document.getElementById('addPower' + num).value="";
+        document.getElementById('addPower' + num).placeholder="0-6";
+        document.getElementById('addTime' + num).value="";
+        if(time_switch_value === 'MIN'){    
+           document.getElementById('addTime' + num).placeholder='0-60'; 
         }else{
-            document.getElementById('addTime' + num).value='0-240';
-        }
-
-        
+           document.getElementById('addTime' + num).placeholder='0-240';
+        }        
     } else {
-        document.getElementById('errorMsg').innerHTML = "Row Number must be between 0-12";
-        $('.error').show();
-    }
-    table = document.getElementById('jsonTable1').appendChild(dataTable);
-    document.getElementById('jsonTable1').appendChild(dataTable);
-
-    
+        document.getElementById('alert' + num).innerHTML = "Row Number must be between 0-12";
+        $('.alert').show();
+    } 
 }
 
-async function deleteFromProfileTable(num) {
-    $('.right').show();
-    if (setRowNo >= 1) {
-        $('.error').hide();
-        timeTotal -= $('tr:last-child').find('td:nth-child(2)').html();
-        $('tr:last-child').remove();
-        setRowNo--;
-        console.log(timeTotal);
-        console.log("row: ", setRowNo);
-    } else {
-        document.getElementById('errorMsg').innerHTML = "There should be data to be deleted";
-        $('.error').show();
-    }
-    table = document.getElementById('jsonTable' + num).appendChild(dataTable);
-    document.getElementById('jsonTable' + num).appendChild(dataTable);
-
-}
 
 function progress(timetotal, $element) {
     timeTotal = timetotal;
@@ -353,24 +340,18 @@ function progress(timetotal, $element) {
 var beginResult = 0,
     endResult = 0;
 
-
-
-
 async function setForBegin() {
     let begin = document.getElementById("begin").value;
     let beginH = parseInt(begin[0] + begin[1]);
     let beginM = parseInt(begin[3] + begin[4]);
     if ((Number.isInteger(beginH))) {
         beginResult = beginH * 60 + beginM;
-        $('.error').hide();
+        $('#subAlert').hide();
     } else {
-        document.getElementById('errorMsg').innerHTML = "The beginning time is not valid";
-        $('.error').show();
+        document.getElementById('subAlert').innerHTML = "The beginning time is not valid";
+        $('#subAlert').show();
     }
 }
-
-
-
 
 async function setForEnd() {
     let end = document.getElementById("end").value;
@@ -378,70 +359,57 @@ async function setForEnd() {
     let endM = parseInt(end[3] + end[4]);
     if ((Number.isInteger(endH))) {
         endResult = endH * 60 + endM;
-        $('.error').hide();
+        $('#subAlert').hide();
     } else {
-        document.getElementById('errorMsg').innerHTML = "The beginning time is not valid";
-        $('.error').show();
+        document.getElementById('subAlert').innerHTML = "The beginning time is not valid";
+        $('#subAlert').show();
     }
 }
 
 var timeAdded = 0;
   async function checkTime(num) {
     timeAdded = document.getElementById("addTime" + num).value;
-    
-
-    
         if(time_switch_value === 'MIN') {
             
             if (timeAdded <= 0 || timeAdded > 60) {
-                document.getElementById('errorMsg').innerHTML = "Time Value must be between  0-60";
-                $('.error').show();
+                document.getElementById('alert' + num).innerHTML = "Time Value must be between  0-60";
+                document.getElementById('alert' + num).alert();
             } else {
-                $('.error').hide();
+               $('.alert').hide();
             }
-        
         } else {
-           
             if (timeAdded <= 0 || timeAdded > 240) {
-                document.getElementById('errorMsg').innerHTML = "Time Value must be between  0-240";
-                $('.error').show();
+                document.getElementById('alert' + num).innerHTML = "Time Value must be between  0-240";
+                document.getElementById('alert' + num).show();
             } else {
-                $('.error').hide();
+               $('.alert').hide();
             }
-    
-          
         }
-  
-
-    
 }
 
 var powerAdded = 0;
 async function checkPower(num) {
     powerAdded = document.getElementById("addPower" + num).value;
     if (powerAdded < 0 || powerAdded > 5) {
-        document.getElementById('errorMsg').innerHTML = "Power Value must be between 0-5";
-        $('.error').show();
+        document.getElementById('alert' + num).innerHTML = "Power Value must be between 0-6";
+        ocument.getElementById('alert' + num).show();
     } else {
-        $('.error').hide();
+        $('.alert').hide();
     }
 }
-
-
-
 
 function controlForTime() {
     let totalMin = endResult - beginResult;
     if (endResult <= beginResult) {
-        document.getElementById('errorMsg').innerHTML = "The ending time cannot be earlier than or equal to the beginning time";
-        $('.error').show();
+        document.getElementById('subAlert').innerHTML = "The ending time cannot be earlier than or equal to the beginning time";
+        $('#subAlert').show();
         return false;
     } else if (totalMin < timeTotal) {
-        document.getElementById('errorMsg').innerHTML = "The total time cannot be longer than the profile period ";
-        $('.error').show();
+        document.getElementById('subAlert').innerHTML = "The total time cannot be longer than the profile period ";
+        $('#subAlert').show();
         return false;
     } else {
-        $('.error').hide();
+        $('#subAlert').hide();
         setBeginTime = document.getElementById("begin").value;
         setEndTime = document.getElementById("end").value;
         return true;

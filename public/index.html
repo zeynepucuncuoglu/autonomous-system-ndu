@@ -8,16 +8,12 @@
     <!-- <link rel="stylesheet" type="text/css" href="style.css" /> -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-
-    <style>
-        .tabcontent {
-            display: none;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
     <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
     </svg>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
         integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
@@ -71,18 +67,24 @@
                             <form id="my-form">
                                     <div class="tab">
                                         <nav>
-                                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                            <a class="nav-item nav-link active profile but" id="p1" data-toggle="tab" onclick="openProfile(event, 'Profile1', 1)" value="P1" role="tab" aria-selected="true">p1</a>
-                                            <a class="nav-item nav-link profile but" id="p2" data-toggle="tab" onclick="openProfile(event, 'Profile1', 2)" value="P2" role="tab"  aria-selected="false">p2</a>
-                                            <a class="nav-item nav-link profile but" id="p3" data-toggle="tab" onclick="openProfile(event, 'Profile1', 3)" value="P3" role="tab"  aria-selected="false">p3</a>
-                                            <a class="nav-item nav-link profile but" id="p4" data-toggle="tab" onclick="openProfile(event, 'Profile1', 4)" value="P4" role="tab"  aria-selected="false">p4</a>  
-                                            <a class="nav-item nav-link profile but" id="p5" data-toggle="tab" onclick="openProfile(event, 'Profile1', 5)" value="P5" role="tab"  aria-selected="false">p5</a>  
-                                            <a class="nav-item nav-link profile but" id="p6" data-toggle="tab" onclick="openProfile(event, 'Profile1', 6)" value="P6" role="tab"  aria-selected="false">p6</a>
-                                            <a class="nav-item nav-link profile but" id="p7" data-toggle="tab" onclick="openProfile(event, 'Profile1', 7)" value="P7" role="tab"  aria-selected="false">p7</a>
-                                            <a class="nav-item nav-link profile but" id="p8" data-toggle="tab" onclick="openProfile(event, 'Profile1', 8)" value="P8" role="tab"  aria-selected="false">p8</a>
+                                            <div class="nav nav-tabs" id="nav-tab" role="tablist" style="border:none">
+                                            <a class="nav-item nav-link active profile but" id="p1" data-toggle="tab" onclick="openProfile(event,'Profile1', 1)" value="P1" role="tab" aria-selected="true">p1</a>
+                                            <a class="nav-item nav-link profile but" id="p2" data-toggle="tab" onclick="openProfile(event,'Profile2', 2)" value="P2" role="tab"  aria-selected="false" style="visibility: hidden;">p2</a>
+                                            <a class="nav-item nav-link profile but" id="p3" data-toggle="tab" onclick="openProfile(event,'Profile3', 3)" value="P3" role="tab"  aria-selected="false" style="visibility: hidden;">p3</a>
+                                            <a class="nav-item nav-link profile but" id="p4" data-toggle="tab" onclick="openProfile(event,'Profile4', 4)" value="P4" role="tab"  aria-selected="false" style="visibility: hidden;">p4</a>  
+                                            <a class="nav-item nav-link profile but" id="p5" data-toggle="tab" onclick="openProfile(event,'Profile5', 5)" value="P5" role="tab"  aria-selected="false" style="visibility: hidden;">p5</a>  
+                                            <a class="nav-item nav-link profile but" id="p6" data-toggle="tab" onclick="openProfile(event,'Profile6', 6)" value="P6" role="tab"  aria-selected="false" style="visibility: hidden;">p6</a>
+                                            <a class="nav-item nav-link profile but" id="p7" data-toggle="tab" onclick="openProfile(event,'Profile7', 7)" value="P7" role="tab"  aria-selected="false" style="visibility: hidden;">p7</a>
+                                            <a class="nav-item nav-link profile but" id="p8" data-toggle="tab" onclick="openProfile(event,'Profile8', 8)" value="P8" role="tab"  aria-selected="false" style="visibility: hidden;">p8</a>
+                                            <a class="nav-item nav-link profile but" id="p9" data-toggle="tab" onclick="openProfile(event,'Profile9', 9)" value="P9" role="tab"  aria-selected="false" style="visibility: hidden;">p9</a> 
+                                            <a class="nav-item nav-link profile but" id="p10" data-toggle="tab" onclick="openProfile(event,'Profile10', 10)" value="P10" role="tab"  aria-selected="false" style="visibility: hidden;">p10</a> 
+                                            <a class="nav-item nav-link profile but" id="p11" data-toggle="tab" onclick="openProfile(event,'Profile11', 11)" value="P11" role="tab"  aria-selected="false" style="visibility: hidden;">p11</a>  
+                                            <a class="nav-item nav-link profile but" id="p12" data-toggle="tab" onclick="openProfile(event,'Profile12', 12)" value="P12" role="tab"  aria-selected="false" style="visibility: hidden;">p12</a> 
                                             </div>
                                         </nav>
                                     </div>
+
+                                    <button class="btn btn-primary btn-sm" type="button" onclick="openNewTab1()"><i class="fa fa-plus"></i></button>
 
                                     </br>
 
@@ -106,44 +108,33 @@
                                     </br>
                                     </br>
 
-
-
-
-
                                     <div class="tab-content" id="nav-tabContent">
                                         <div id="Profile1" class="tabcontent tab-pane fade show active" role="tabpanel" aria-labelledby="p1">
-                                            <div>
-                                                <div class="container-fluid">
+                                            
+                                                <div class="container-fluid" >
                                                     <form class="form-inline">
                                                         <label for="addPower1" class="m-2">Add Power</label>
                                                         <input type="text" class="form-control m-2 col-sm-1" id="addPower1" onchange="checkPower(1)" required>
-                                                        <!-- <div class="alert alert-danger mx-auto" role="alert"></div> -->
                                                         <label for="addTime1" class="m-2">Add Time</label>
-                                                        <input type="text" class="form-control m-2 col-sm-1" id="addTime1" onchange="checkTime(1)" required>
+                                                        <input type="text" class="form-control m-2 col-sm-1 time" id="addTime1" onchange="checkTime(1)" required>
                                                         <div class="d-grid gap-2 col-sm-1 mx-auto">
-                                                        <button class="btn btn-primary btn-sm" type="button" onclick="addToProfileTable(1)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-                                                            <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
-                                                            </svg></button>       
+                                                            <button class="btn btn-primary btn-sm" type="button" onclick="addToProfileTable(1)"><i class="fa fa-plus"></i></button>       
                                                         </div>
+                                                    <br>
+                                                        <div class="alert alert-danger " id = 'alert1' role="alert"></div>
                                                     </form>
                                                 </div>
                                     
                                             
-                                            </div>
-                                            <!-- <div id="chartData">
-                                                <table class="table" id="jsonTable1">
-                                                </table>
-                                            </div>
-                                            <div class="progressBar" id="progressBar1">
-                                                <div class="bar"></div>
-                                            </div> -->
+                                            
+                                            
                                         </div>
                                 
                                     
                                     
                                 
                                 
-                                        <div id="Profile2" class="tabcontent tab-pane fade" role="tabpanel" aria-labelledby="p2">
+                                        <div id="Profile2" class="tabcontent">
                                             <div>    
                                                 <div class="container-fluid">
                                                     <form class="form-inline">
@@ -152,23 +143,17 @@
                                                         <label for="addTime2" class="m-2">Add Time</label>
                                                         <input type="text" class="form-control m-2 col-sm-1" id="addTime2" onchange="checkTime(2)" required>
                                                         <div class="d-grid gap-2 col-sm-1 mx-auto">
-                                                        <button class="btn btn-primary btn-sm" type="button" onclick="addToProfileTable(2)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-                                                            <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
-                                                            </svg></button>       
+                                                            <button class="btn btn-primary btn-sm" type="button" onclick="addToProfileTable(2)"><i class="fa fa-plus"></i></button>       
                                                         </div>
+                                                        <br>
+                                                        <div class="alert alert-danger " id = 'alert2' role="alert"></div>
                                                     </form>
                                                 </div>
                                             </div>
-                                            <!-- <div id="chartData">
-                                                <table class="table" id="jsonTable2">
-                                                </table>
-                                            </div>
-                                            <div class="progressBar" id="progressBar2">
-                                                <div class="bar"></div>
-                                            </div> -->
+                                       
                                         </div>
                                 
-                                        <div id="Profile3" class="tabcontent tab-pane fade" role="tabpanel" aria-labelledby="p3">
+                                        <div id="Profile3" class="tabcontent">
                                             <div>   
                                                 <div class="container-fluid">
                                                     <form class="form-inline">
@@ -177,20 +162,13 @@
                                                         <label for="addTime3" class="m-2">Add Time</label>
                                                         <input type="text" class="form-control m-2 col-sm-1" id="addTime3" onchange="checkTime(3)" required>
                                                         <div class="d-grid gap-2 col-sm-1 mx-auto">
-                                                        <button class="btn btn-primary btn-sm" type="button" onclick="addToProfileTable(3)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-                                                            <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
-                                                            </svg></button>       
+                                                        <button class="btn btn-primary btn-sm" type="button" onclick="addToProfileTable(3)"><i class="fa fa-plus"></i></button>       
                                                         </div>
+                                                        <div class="alert alert-danger " id = 'alert3' role="alert"></div>
                                                     </form>
                                                 </div>
                                             </div>
-                                            <!-- <div id="chartData">
-                                                <table class="table" id="jsonTable3">
-                                                </table>
-                                            </div>
-                                            <div class="progressBar" id="progressBar3">
-                                                <div class="bar"></div>
-                                            </div> -->
+                                            
                                         </div>
 
                                         <div id="Profile4" class="tabcontent">
@@ -204,24 +182,13 @@
                                                         <input type="text" class="form-control m-2 col-sm-1" id="addTime4"
                                                             onchange="checkTime(4)" required>
                                                         <div class="d-grid gap-2 col-sm-1 mx-auto">
-                                                            <button class="btn btn-primary btn-sm" type="button"
-                                                                onclick="addToProfileTable(4)"><svg
-                                                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                                    fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-                                                                    <path
-                                                                        d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z" />
-                                                            </svg></button>
+                                                            <button class="btn btn-primary btn-sm" type="button" onclick="addToProfileTable(4)"><i class="fa fa-plus"></i></button>
                                                         </div>
+                                                        <div class="alert alert-danger " id = 'alert4' role="alert"></div>
                                                     </form>
                                                 </div>
                                             </div>
-                                            <!-- <div id="chartData">
-                                                <table class="table" id="jsonTable4">
-                                                </table>
-                                            </div>
-                                            <div class="progressBar" id="progressBar4">
-                                                <div class="bar"></div>
-                                            </div> -->
+                                          
                                         </div>
 
                                         <div id="Profile5" class="tabcontent">
@@ -237,23 +204,13 @@
                                                             onchange="checkTime(5)" required>
                                                         <div class="d-grid gap-2 col-sm-1 mx-auto">
                                                             <button class="btn btn-primary btn-sm " type="button"
-                                                                onclick="addToProfileTable(5)"><svg
-                                                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                                    fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-                                                                    <path
-                                                                        d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z" />
-                                                                </svg></button>
+                                                                onclick="addToProfileTable(5)"><i class="fa fa-plus"></i></button>
                                                         </div>
+                                                        <div class="alert alert-danger " id = 'alert5' role="alert"></div>
                                                     </form>
                                                 </div>
                                             </div>
-                                            <!-- <div id="chartData">
-                                                <table id="jsonTable5">
-                                                </table>
-                                            </div>
-                                            <div class="progressBar" id="progressBar5">
-                                                <div class="bar"></div>
-                                            </div> -->
+                                            
                                         </div>
 
                                         <div id="Profile6" class="tabcontent">
@@ -267,23 +224,11 @@
                                                         <input type="text" class="form-control m-2 col-sm-1" id="addTime6"
                                                             onchange="checkTime(6)" required>
                                                         <div class="d-grid gap-2 col-sm-1 mx-auto">
-                                                            <button class="btn btn-primary btn-sm" type="button"
-                                                                onclick="addToProfileTable(6)"><svg
-                                                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                                    fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-                                                                    <path
-                                                                        d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z" />
-                                                            </svg></button>
+                                                            <button class="btn btn-primary btn-sm" type="button" onclick="addToProfileTable(6)"><i class="fa fa-plus"></i></button>
                                                         </div>
+                                                        <div class="alert alert-danger " id = 'alert6' role="alert"></div>
                                                     </form>
                                                 </div>
-                                            </div>
-                                            <div id="chartData">
-                                                <table id="jsonTable6">
-                                                </table>
-                                            </div>
-                                            <div class="progressBar" id="progressBar6">
-                                                <div class="bar"></div>
                                             </div>
                                         </div>
 
@@ -299,24 +244,14 @@
                                                             onchange="checkTime(7)" required>
                                                         <div class="d-grid gap-2 col-sm-1 mx-auto">
                                                             <button class="btn btn-primary btn-sm" type="button"
-                                                                onclick="addToProfileTable(7)"><svg
-                                                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                                    fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-                                                                    <path
-                                                                        d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z" />
-                                                            </svg></button>
+                                                                onclick="addToProfileTable(7)"><i class="fa fa-plus"></i></button>
                                                         </div>
+                                                        <div class="alert alert-danger " id = 'alert7' role="alert"></div>
                                                     </form>
                                                 </div>
                                             </div>
-                                            <!-- <div id="chartData">
-                                                <table id="jsonTable7">
-                                                </table>  
-                                            </div>
                                             
-                                            <div class="progressBar" id="progressBar7">
-                                                <div class="bar"></div>
-                                            </div> -->
+                                             
                                         </div>
 
                                         <div id="Profile8" class="tabcontent">
@@ -331,46 +266,116 @@
                                                         <input type="text" class="form-control m-2 col-sm-1" id="addTime8"
                                                             onchange="checkTime(8)" required>
                                                         <div class="d-grid gap-2 col-sm-1 mx-auto">
-                                                            <button class="btn btn-primary btn-sm" type="button"
-                                                                onclick="addToProfileTable(8)"><svg
-                                                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                                    fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-                                                                    <path
-                                                                        d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z" />
-                                                            </svg></button>
+                                                            <button class="btn btn-primary btn-sm" type="button" onclick="addToProfileTable(8)"><i class="fa fa-plus"></i></button>
                                                         </div>
+                                                        <div class="alert alert-danger " id = 'alert8' role="alert"></div>
                                                     </form>
                                                 </div>
                                             </div>
-                                            <!-- <div id="chartData">
-                                                <table id="jsonTable8">
-                                                   
-                                                </table>
-                                                
-                                            </div>
-                                            <div class="progressBar" id="progressBar8">
-                                                <div class="bar"></div>
-                                            </div> -->
+                                            
                                         </div>
 
+                                        <div id="Profile9" class="tabcontent">
+                                            <div>
 
-                                        <table class="table" id="jsonTable1">
-                                            <caption>List of users</caption>
-                                            <thead>
-                                              <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">Index</th>
-                                                <th scope="col">Sec/Min</th>
-                                                <th scope="col">Time</th>
-                                                <th scope="col">Power</th>
-                                                <th scope="col"></th>
-                                              </tr>
-                                            </thead>
-                                            <tbody>
-                                            </tbody>
-                                          </table>
+                                                <div class="container-fluid">
+                                                    <form class="form-inline">
+                                                        <label for="addPower9" class="m-2">Add Power</label>
+                                                        <input type="text" class="form-control m-2 col-sm-1" id="addPower9"
+                                                            onchange="checkPower(9)" required>
+                                                        <label for="addTime9" class="m-2">Add Time</label>
+                                                        <input type="text" class="form-control m-2 col-sm-1" id="addTime9"
+                                                            onchange="checkTime(9)" required>
+                                                        <div class="d-grid gap-2 col-sm-1 mx-auto">
+                                                            <button class="btn btn-primary btn-sm" type="button" onclick="addToProfileTable(9)"><i class="fa fa-plus"></i></button>
+                                                        </div>
+                                                        <div class="alert alert-danger " id = 'alert9' role="alert"></div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+
+                                        <div id="Profile10" class="tabcontent">
+                                            <div>
+
+                                                <div class="container-fluid">
+                                                    <form class="form-inline">
+                                                        <label for="addPower10" class="m-2">Add Power</label>
+                                                        <input type="text" class="form-control m-2 col-sm-1" id="addPower10"
+                                                            onchange="checkPower(10)" required>
+                                                        <label for="addTime10" class="m-2">Add Time</label>
+                                                        <input type="text" class="form-control m-2 col-sm-1" id="addTime10"
+                                                            onchange="checkTime(10)" required>
+                                                        <div class="d-grid gap-2 col-sm-1 mx-auto">
+                                                            <button class="btn btn-primary btn-sm" type="button" onclick="addToProfileTable(10)"><i class="fa fa-plus"></i></button>
+                                                        </div>
+                                                        <div class="alert alert-danger " id = 'alert10' role="alert"></div>
+                                                    </form>
+                                                </div>
+                                            </div>       
+                                        </div>
+
+                                        <div id="Profile11" class="tabcontent">
+                                            <div>
+
+                                                <div class="container-fluid">
+                                                    <form class="form-inline">
+                                                        <label for="addPower11" class="m-2">Add Power</label>
+                                                        <input type="text" class="form-control m-2 col-sm-1" id="addPower11"
+                                                            onchange="checkPower(11)" required>
+                                                        <label for="addTime11" class="m-2">Add Time</label>
+                                                        <input type="text" class="form-control m-2 col-sm-1" id="addTime11"
+                                                            onchange="checkTime(11)" required>
+                                                        <div class="d-grid gap-2 col-sm-1 mx-auto">
+                                                            <button class="btn btn-primary btn-sm" type="button" onclick="addToProfileTable(11)"><i class="fa fa-plus"></i></button>
+                                                        </div>
+                                                        <div class="alert alert-danger " id = 'alert11' role="alert"></div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+
+                                        <div id="Profile12" class="tabcontent">
+                                            <div>
+
+                                                <div class="container-fluid">
+                                                    <form class="form-inline">
+                                                        <label for="addPower12" class="m-2">Add Power</label>
+                                                        <input type="text" class="form-control m-2 col-sm-1" id="addPower12"
+                                                            onchange="checkPower(12)" required>
+                                                        <label for="addTime12" class="m-2">Add Time</label>
+                                                        <input type="text" class="form-control m-2 col-sm-1" id="addTime12"
+                                                            onchange="checkTime(12)" required>
+                                                        <div class="d-grid gap-2 col-sm-1 mx-auto">
+                                                            <button class="btn btn-primary btn-sm" type="button" onclick="addToProfileTable(12)"><i class="fa fa-plus"></i></button>
+                                                        </div>
+                                                        <div class="alert alert-danger " id = 'alert12' role="alert"></div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>    
                                     </div>
                             </form>
+                            <table class="table" id="jsonTable1">
+                                <caption>List of users</caption>
+                                <thead>
+                                  <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Index</th>
+                                    <th scope="col">Sec/Min</th>
+                                    <th scope="col">Time</th>
+                                    <th scope="col">Power</th>
+                                    <th scope="col"></th>
+                                  </tr>
+                                </thead>
+                                <tbody id="bodyOfTable">
+                                </tbody>
+                              </table>
+
+
                     </div>
                 </div>
 
@@ -502,9 +507,9 @@
     
     </br>
 
-
+    <div class="alert alert-danger text-center col-sm-10 mx-auto" id ='subAlert' role="alert" style="visibility: hidden;"></div>
     <div class="d-grid gap-2 col-2 mx-auto">
-        <button id="submit" class="btn btn-primary" type="button"onclick="submitResult()" value="submit">SUBMIT</button>
+        <button id="submit" class="btn btn-primary" type="button"onclick="submitResult()" value="submit" >SUBMIT</button>
     </div>
     
        
