@@ -10,9 +10,9 @@
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+    <!-- <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
     <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-    </svg>
+    </svg> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
@@ -28,14 +28,14 @@
 </head>
 <body>
     <header>
-        <h1 class="text-center text-secondary">Autonomous System</h1>
+        <h1 class="text-center" >Autonomous System</h1>
     </header>
     <section class="error">
         <p id="errorMsg"></p>
     </section>
     <section class="container">
         <div class="card-group">
-                <div class="card bg-secondary text-white text-center">
+                <div class="card  text-center">
                     <div class="card-body">
                         <div class="column left">
                             <form id="my-form">
@@ -51,30 +51,18 @@
                         </div>
                     </div>
                 </div>
-                <div class="card bg-secondary text-white">
+                <div class="card">
                     <div class="card-body">
                         <div class="middle">
                             <form id="my-form">
                                     <div class="tab">
                                         <nav>
                                             <div class="nav nav-tabs" id="nav-tab" role="tablist" style="border:none">
-                                            <a class="nav-item nav-link active profile but" id="p1" data-toggle="tab" onclick="openProfile(event,'Profile1', 1)" value="P1" role="tab" aria-selected="true">p1</a>
-                                            <a class="nav-item nav-link profile but" id="p2" data-toggle="tab" onclick="openProfile(event,'Profile2', 2)" value="P2" role="tab"  aria-selected="false" style="visibility: hidden;">p2</a>
-                                            <a class="nav-item nav-link profile but" id="p3" data-toggle="tab" onclick="openProfile(event,'Profile3', 3)" value="P3" role="tab"  aria-selected="false" style="visibility: hidden;">p3</a>
-                                            <a class="nav-item nav-link profile but" id="p4" data-toggle="tab" onclick="openProfile(event,'Profile4', 4)" value="P4" role="tab"  aria-selected="false" style="visibility: hidden;">p4</a>  
-                                            <a class="nav-item nav-link profile but" id="p5" data-toggle="tab" onclick="openProfile(event,'Profile5', 5)" value="P5" role="tab"  aria-selected="false" style="visibility: hidden;">p5</a>  
-                                            <a class="nav-item nav-link profile but" id="p6" data-toggle="tab" onclick="openProfile(event,'Profile6', 6)" value="P6" role="tab"  aria-selected="false" style="visibility: hidden;">p6</a>
-                                            <a class="nav-item nav-link profile but" id="p7" data-toggle="tab" onclick="openProfile(event,'Profile7', 7)" value="P7" role="tab"  aria-selected="false" style="visibility: hidden;">p7</a>
-                                            <a class="nav-item nav-link profile but" id="p8" data-toggle="tab" onclick="openProfile(event,'Profile8', 8)" value="P8" role="tab"  aria-selected="false" style="visibility: hidden;">p8</a>
-                                            <a class="nav-item nav-link profile but" id="p9" data-toggle="tab" onclick="openProfile(event,'Profile9', 9)" value="P9" role="tab"  aria-selected="false" style="visibility: hidden;">p9</a> 
-                                            <a class="nav-item nav-link profile but" id="p10" data-toggle="tab" onclick="openProfile(event,'Profile10', 10)" value="P10" role="tab"  aria-selected="false" style="visibility: hidden;">p10</a> 
-                                            <a class="nav-item nav-link profile but" id="p11" data-toggle="tab" onclick="openProfile(event,'Profile11', 11)" value="P11" role="tab"  aria-selected="false" style="visibility: hidden;">p11</a>  
-                                            <a class="nav-item nav-link profile but" id="p12" data-toggle="tab" onclick="openProfile(event,'Profile12', 12)" value="P12" role="tab"  aria-selected="false" style="visibility: hidden;">p12</a>
+                                            <a class="nav-item bg-primary nav-link btn-sm text-white" id="button" data-toggle="tab" onclick="openNewTab()" value="button" role="tab" aria-selected="true"><i class="fa fa-plus"></i></a>    
+                                             <a class="nav-item nav-link active profile but" id="p1" data-toggle="tab" onclick="openProfile(event,'Profile1', 1)" value="P1" role="tab" aria-selected="true">p1</a>
                                             </div>
                                         </nav>
                                     </div>
-                                    <button class="btn btn-primary btn-sm" type="button" onclick="openNewTab1()"><i class="fa fa-plus"></i></button>
-                                    </br>
                                     </br>
                                     <div class="alert alert-danger text-center col-sm-10 mx-auto" id ="profileAlert" role="alert"></div>
                                     </br>
@@ -102,195 +90,12 @@
                                                     </form>
                                                 </div>   
                                         </div>                         
-                                        <div id="Profile2" class="tabcontent">
-                                            <div>    
-                                                <div class="container-fluid">
-                                                    <form class="form-inline">
-                                                        <label for="addPower2" class="m-2">Add Power</label>
-                                                        <input type="text" class="form-control m-2 col-sm-1" id="addPower2" onchange="checkPower(2)" required>
-                                                        <label for="addTime2" class="m-2">Add Time</label>
-                                                        <input type="text" class="form-control m-2 col-sm-1" id="addTime2" onchange="checkTime(2)" required>
-                                                        <div class="d-grid gap-2 col-sm-1 mx-auto">
-                                                            <button class="btn btn-primary btn-sm" type="button" onclick="addToProfileTable(2)"><i class="fa fa-plus"></i></button>       
-                                                        </div>
-                                                        <br>
-                                                    </form>
-                                                </div>
-                                            </div>    
-                                        </div>
-                                        <div id="Profile3" class="tabcontent">
-                                            <div>   
-                                                <div class="container-fluid">
-                                                    <form class="form-inline">
-                                                        <label for="addPower3" class="m-2">Add Power</label>
-                                                        <input type="text" class="form-control m-2 col-sm-1" id="addPower3" onchange="checkPower(3)" required>
-                                                        <label for="addTime3" class="m-2">Add Time</label>
-                                                        <input type="text" class="form-control m-2 col-sm-1" id="addTime3" onchange="checkTime(3)" required>
-                                                        <div class="d-grid gap-2 col-sm-1 mx-auto">
-                                                        <button class="btn btn-primary btn-sm" type="button" onclick="addToProfileTable(3)"><i class="fa fa-plus"></i></button>       
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>  
-                                        </div>
-                                        <div id="Profile4" class="tabcontent">
-                                            <div>
-                                                <div class="container-fluid">
-                                                    <form class="form-inline">
-                                                        <label for="addPower4" class="m-2">Add Power</label>
-                                                        <input type="text" class="form-control m-2 col-sm-1" id="addPower4"
-                                                            onchange="checkPower(4)" required>
-                                                        <label for="addTime4" class="m-2">Add Time</label>
-                                                        <input type="text" class="form-control m-2 col-sm-1" id="addTime4"
-                                                            onchange="checkTime(4)" required>
-                                                        <div class="d-grid gap-2 col-sm-1 mx-auto">
-                                                            <button class="btn btn-primary btn-sm" type="button" onclick="addToProfileTable(4)"><i class="fa fa-plus"></i></button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div id="Profile5" class="tabcontent">
-                                            <div>
-                                                <div class="container-fluid">
-                                                    <form class="form-inline">
-                                                        <label for="addPower5" class="m-2">Add Power</label>
-                                                        <input type="text" class="form-control m-2 col-sm-1" id="addPower5"
-                                                            onchange="checkPower(5)" required>
-                                                        <label for="addTime5" class="m-2">Add Time</label>
-                                                        <input type="text" class="form-control m-2 col-sm-1" id="addTime5"
-                                                            onchange="checkTime(5)" required>
-                                                        <div class="d-grid gap-2 col-sm-1 mx-auto">
-                                                            <button class="btn btn-primary btn-sm " type="button" onclick="addToProfileTable(5)"><i class="fa fa-plus"></i></button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div id="Profile6" class="tabcontent">
-                                            <div>
-                                                <div class="container-fluid">
-                                                    <form class="form-inline">
-                                                        <label for="addPower6" class="m-2">Add Power</label>
-                                                        <input type="text" class="form-control m-2 col-sm-1" id="addPower6"
-                                                            onchange="checkPower(6)" required>
-                                                        <label for="addTime6" class="m-2">Add Time</label>
-                                                        <input type="text" class="form-control m-2 col-sm-1" id="addTime6" onchange="checkTime(6)" required>
-                                                        <div class="d-grid gap-2 col-sm-1 mx-auto">
-                                                            <button class="btn btn-primary btn-sm" type="button" onclick="addToProfileTable(6)"><i class="fa fa-plus"></i></button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div id="Profile7" class="tabcontent">
-                                            <div>
-                                                <div class="container-fluid">
-                                                    <form class="form-inline">
-                                                        <label for="addPower7" class="m-2">Add Power</label>
-                                                        <input type="text" class="form-control m-2 col-sm-1" id="addPower7"
-                                                            onchange="checkPower(7)" required>
-                                                        <label for="addTime7" class="m-2">Add Time</label>
-                                                        <input type="text" class="form-control m-2 col-sm-1" id="addTime7"
-                                                            onchange="checkTime(7)" required>
-                                                        <div class="d-grid gap-2 col-sm-1 mx-auto">
-                                                            <button class="btn btn-primary btn-sm" type="button"
-                                                                onclick="addToProfileTable(7)"><i class="fa fa-plus"></i></button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>    
-                                        </div>
-                                        <div id="Profile8" class="tabcontent">
-                                            <div>
-                                                <div class="container-fluid">
-                                                    <form class="form-inline">
-                                                        <label for="addPower8" class="m-2">Add Power</label>
-                                                        <input type="text" class="form-control m-2 col-sm-1" id="addPower8"
-                                                            onchange="checkPower(8)" required>
-                                                        <label for="addTime8" class="m-2">Add Time</label>
-                                                        <input type="text" class="form-control m-2 col-sm-1" id="addTime8"
-                                                            onchange="checkTime(8)" required>
-                                                        <div class="d-grid gap-2 col-sm-1 mx-auto">
-                                                            <button class="btn btn-primary btn-sm" type="button" onclick="addToProfileTable(8)"><i class="fa fa-plus"></i></button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>  
-                                        </div>
-                                        <div id="Profile9" class="tabcontent">
-                                            <div>
-                                                <div class="container-fluid">
-                                                    <form class="form-inline">
-                                                        <label for="addPower9" class="m-2">Add Power</label>
-                                                        <input type="text" class="form-control m-2 col-sm-1" id="addPower9"
-                                                            onchange="checkPower(9)" required>
-                                                        <label for="addTime9" class="m-2">Add Time</label>
-                                                        <input type="text" class="form-control m-2 col-sm-1" id="addTime9" onchange="checkTime(9)" required>
-                                                        <div class="d-grid gap-2 col-sm-1 mx-auto">
-                                                            <button class="btn btn-primary btn-sm" type="button" onclick="addToProfileTable(9)"><i class="fa fa-plus"></i></button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div> 
-                                        </div>
-                                        <div id="Profile10" class="tabcontent">
-                                            <div>
-                                                <div class="container-fluid">
-                                                    <form class="form-inline">
-                                                        <label for="addPower10" class="m-2">Add Power</label>
-                                                        <input type="text" class="form-control m-2 col-sm-1" id="addPower10"
-                                                            onchange="checkPower(10)" required>
-                                                        <label for="addTime10" class="m-2">Add Time</label>
-                                                        <input type="text" class="form-control m-2 col-sm-1" id="addTime10"
-                                                            onchange="checkTime(10)" required>
-                                                        <div class="d-grid gap-2 col-sm-1 mx-auto">
-                                                            <button class="btn btn-primary btn-sm" type="button" onclick="addToProfileTable(10)"><i class="fa fa-plus"></i></button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>       
-                                        </div>
-                                        <div id="Profile11" class="tabcontent">
-                                            <div>
-                                                <div class="container-fluid">
-                                                    <form class="form-inline">
-                                                        <label for="addPower11" class="m-2">Add Power</label>
-                                                        <input type="text" class="form-control m-2 col-sm-1" id="addPower11"
-                                                            onchange="checkPower(11)" required>
-                                                        <label for="addTime11" class="m-2">Add Time</label>
-                                                        <input type="text" class="form-control m-2 col-sm-1" id="addTime11"
-                                                            onchange="checkTime(11)" required>
-                                                        <div class="d-grid gap-2 col-sm-1 mx-auto">
-                                                            <button class="btn btn-primary btn-sm" type="button" onclick="addToProfileTable(11)"><i class="fa fa-plus"></i></button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                            
-                                        </div>
-
-                                        <div id="Profile12" class="tabcontent">
-                                            <div>
-                                                <div class="container-fluid">
-                                                    <form class="form-inline">
-                                                        <label for="addPower12" class="m-2">Add Power</label>
-                                                        <input type="text" class="form-control m-2 col-sm-1" id="addPower12"
-                                                            onchange="checkPower(12)" required>
-                                                        <label for="addTime12" class="m-2">Add Time</label>
-                                                        <input type="text" class="form-control m-2 col-sm-1" id="addTime12" onchange="checkTime(12)" required>
-                                                        <div class="d-grid gap-2 col-sm-1 mx-auto">
-                                                            <button class="btn btn-primary btn-sm" type="button" onclick="addToProfileTable(12)"><i class="fa fa-plus"></i></button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div> 
-                                        </div>    
+                                        
                                     </div>
                             </form>
                             <div class="alert alert-danger m-2 mx-auto" id ="alert1" role="alert"></div>
                             <table class="table text-white" id="jsonTable1">
-                                <caption>List of users</caption>
+            
                                 <thead>
                                   <tr>
                                     <th scope="col">#</th>
@@ -309,7 +114,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card bg-secondary text-white">
+            <div class="card ">
                 <div class="card-body">
                     <div class="column right">
                         <form id="my-form">
@@ -319,10 +124,15 @@
                                 Profile </br> Begin - End Time
                             </div>
                             </br>
-                            <label for="begin">Begin Time </label>
-                            <input type="time" id="begin" min="00:00" max="23:59" onchange="setForBegin()" required>
+                            <div>
+                             <div>
+                            <label for="begin">Begin Time </label> 
+                            <input type="time" id="begin" min="00:00" max="23:59" onchange="setForBegin()" required></div>
+                            <div>
+                            <br>
                             <label for="end">End Time </label>
                             <input type="time" id="end" min="00:00" max="23:59" onchange="setForEnd()" required>
+                            </div>
                             </br>
                             </br>
                             </br>

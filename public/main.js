@@ -1,13 +1,15 @@
 // const { Chart } = require("chart.js");
 
-
-
-
-
 var profiles = [];
+var table = [];
+var rowElement = {
+    index: "Index",
+    time: "Time",
+    power: "Power"
+}
 var profile = {
     id: 1,
-    table: [{
+    table:[{
         index: "Index",
         time: "Time",
         power: "Power"
@@ -27,7 +29,7 @@ var profileNum = 1;
 var dataTable = document.getElementById('jsonTable1');
 var setTable = '';
 var time_switch_value;
-var tabNum = 0;
+var tabNum = 1;
 
 var result = "";
 let setSwitchValue = '0';
@@ -42,6 +44,137 @@ let setTimeTypeValue = 'SEC';
 
 //$('.alert').hide();
 
+
+var CHART = document.getElementById("lineChart");
+    console.log(CHART)
+    var lineChart = new Chart(CHART, {
+        type: 'line',
+        data: {
+            labels: ['0','1','2','3','4','5','6'],
+            datasets: [{
+                    label: 'P1',
+                    data: [],
+                    fill: false,
+                    borderColor: '#FFC9DE',
+                    backgroundColor: '#FFC9DE',
+                    borderWidth: 2,
+                    pointStyle: 'Stars',
+                    pointRadius: 6,
+                 },
+                 {
+                    label: 'P2',
+                    data: [],
+                    fill: false,
+                    borderColor: '#FFABAB',
+                    backgroundColor: '#FFABAB',
+                    borderWidth: 2,
+                    pointStyle: 'Stars',
+                    pointRadius: 6,
+                },
+                {
+                    label: 'P3',
+                    data: [],
+                    fill: false,
+                    borderColor: '#FF9CEE',
+                    backgroundColor: '#FF9CEE',
+                    borderWidth: 2,
+                    pointStyle: 'Stars',
+                    pointRadius: 6,
+                 },
+                 {
+                    label: 'P4',
+                    data: [],
+                    fill: false,
+                    borderColor: '#FFCCF9',
+                    backgroundColor: '#FFCCF9',
+                    borderWidth: 2,
+                    pointStyle: 'Stars',
+                    pointRadius: 6,
+                 },
+                 {
+                    label: 'P5',
+                    data: [],
+                    fill: false,
+                    borderColor: '#D5AAFF',
+                    backgroundColor: '#D5AAFF',
+                    borderWidth: 2,
+                    pointStyle: 'Stars',
+                    pointRadius: 6,
+                 },
+                 {
+                    label: 'P6',
+                    data: [],
+                    fill: false,
+                    borderColor: '#B28DFF',
+                    backgroundColor: '#B28DFF',
+                    borderWidth: 2,
+                    pointStyle: 'Stars',
+                    pointRadius: 6,
+                 },
+                 {
+                    label: 'P7',
+                    data: [],
+                    fill: false,
+                    borderColor: '#DCD3FF',
+                    backgroundColor: '#DCD3FF',
+                    borderWidth: 2,
+                    pointStyle: 'Stars',
+                    pointRadius: 6,
+                 },
+                 {
+                    label: 'P8',
+                    data: [],
+                    fill: false,
+                    borderColor: '#AFCBFF',
+                    backgroundColor: '#AFCBFF',
+                    borderWidth: 2,
+                    pointStyle: 'Stars',
+                    pointRadius: 6,
+                 },
+                 {
+                    label: 'P9',
+                    data: [],
+                    fill: false,
+                    borderColor: '#6EB5FF',
+                    backgroundColor: '#6EB5FF',
+                    borderWidth: 2,
+                    pointStyle: 'Stars',
+                    pointRadius: 6,
+                 },
+                 {
+                    label: 'P10',
+                    data: [],
+                    fill: false,
+                    borderColor: '#BFFCC6',
+                    backgroundColor: '#BFFCC6',
+                    borderWidth: 2,
+                    pointStyle: 'Stars',
+                    pointRadius: 6,
+                 },
+                 {
+                    label: 'P11',
+                    data: [],
+                    fill: false,
+                    borderColor: '#E7FFAC',
+                    backgroundColor: '#E7FFAC',
+                    borderWidth: 2,
+                    pointStyle: 'Stars',
+                    pointRadius: 6,
+                 },
+                {
+                    label: 'P12',
+                    data: [],
+                    fill: false,
+                    borderColor: '#FFF5BA',
+                    backgroundColor: '#FFF5BA',
+                    borderWidth: 2,
+                    pointStyle: 'Stars',
+                    pointRadius: 6,
+            }],
+        },
+        options: {}
+    });
+
 function setup() {
     //showProfile();
     $('.right').hide();
@@ -49,11 +182,7 @@ function setup() {
     $('#alert1').hide();
     // $('#subAlert').hide();
     $('.alert').hide();
-    drawChart();
-
 }
-
-
 $('#auto_switch').on('change', function() {
     if ($(this).is(':checked')) {
         $('.alert').hide();
@@ -75,27 +204,26 @@ $('#time_switch').on('change', function() {
     if ($(this).is(':checked')) {      
         time_switch_value = 'MIN';
         setTimeTypeValue = time_switch_value;
-        for(var i=1;i<13;i++){
+        for(var i=1;i<tabNum;i++){
             document.getElementById('addPower' + i).placeholder="0-6";
             document.getElementById('addTime' + i).placeholder='0-60'; 
         }  
     } else {
         time_switch_value = 'SEC';
         setTimeTypeValue = time_switch_value;
-        for(var i=1;i<13;i++){
+        for(var i=1;i<tabNum;i++){
             document.getElementById('addPower' + i).placeholder="0-6";
             document.getElementById('addTime' + i).placeholder='0-240'; 
         }  
     }
 });
 
-
-
 function openProfile( evt,profileName, num) {
+    console.log(profileName);
+    console.log(num);
     $('#subAlert').hide();
     $('.right').show();
     profileNum = num;
-    //showProfile(profileNum);
     console.log("Entered Profile", num);
     setProfileNum = num;
     var i, tabcontent, tablinks;
@@ -107,107 +235,109 @@ function openProfile( evt,profileName, num) {
     for (i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
-    document.getElementById(profileName).style.display = "block";
+    document.getElementById(profileName).style.display="block";
     evt.currentTarget.className += " active";
-
-    //document.getElementById("p" + num).addClass("active");
 };
 
-function openNewTab1(){
-    if(tabNum<11){
+function createTable(){
+
+
+};
+
+function openNewTab(){
+  if(tabNum<11){
         tabNum ++;
-        document.getElementsByClassName('profile')[tabNum].style.visibility = 'visible';
+        let newTab = document.createElement('a');
+        newTab.classList = "nav-item nav-link profile but";
+        newTab.id = "p" + tabNum ;
+        newTab.innerHTML = "p" + tabNum;
+        
+        //creating profile part
+        var newProfile = document.createElement('div');
+        newProfile.id="Profile" + tabNum;
+        newProfile.classList = "tabcontent";
+        newProfile.setAttribute("role","tabpanel");
+        newProfile.setAttribute("aria-labelledby", "p" + tabNum);
+        //container for bootstrap
+        var container = document.createElement('div');
+        container.className="container-fluid";
+        
+        //form for boot
+        var form = document.createElement('form');
+        form.className="form-inline";
+        //creating labels and inputs
+        //power Label
+        var powLabel = document.createElement('label');
+        powLabel.className="m-2";
+        powLabel.setAttribute("for","addPower" + tabNum);
+        powLabel.innerHTML = "Add power";
+        form.appendChild(powLabel);
+        //power input
+        var inpPow = document.createElement('input');
+        inpPow.type = "text";
+        inpPow.classList="form-control m-2 col-sm-1";
+        inpPow.id="addPower" + tabNum ;
+        inpPow.addEventListener("onchange",function(event){
+            var sendTabnum = event.target.id.split("addPower")[1];
+            checkPower(sendTabnum)});
+        form.appendChild(inpPow);
+        //Time label
+        var timeLabel = document.createElement('label');
+        timeLabel.className="m-2";
+        timeLabel.setAttribute("for","addTime" + tabNum);
+        timeLabel.innerHTML = "Add Time";
+        form.appendChild(timeLabel);
+        //time input
+        var inpTime = document.createElement('input');
+        inpTime.type="text";
+        inpTime.classList="form-control m-2 col-sm-1";
+        inpTime.id="addTime" + tabNum ;
+        inpTime.addEventListener("onchange",function(event){
+            var sendTabnum = event.target.id.split("addTime")[1];
+            checkTime(sendTabnum)});
+        form.appendChild(inpTime);
+        //button 
+        var buttoncontainer = document.createElement('div');
+        buttoncontainer.classList="d-grid gap-2 col-sm-1 mx-auto";
+        var addButton = document.createElement('button');
+        addButton.type="button";
+        addButton.id="addButton"+tabNum;
+        addButton.classList="btn btn-primary btn-sm";
+        addButton.innerHTML="<i class='fa fa-plus'></i>";
+        addButton.addEventListener("click",function(event){
+            var sendTabnum = event.target.id.split("addButton")[1];
+            addToProfileTable(sendTabnum)
+        });
+        buttoncontainer.appendChild(addButton);
+        form.appendChild(buttoncontainer);
+        
+        container.appendChild(form);
+        newProfile.appendChild(container);
+        document.getElementById("nav-tabContent").appendChild(newProfile);
+
+        newTab.addEventListener("click",function(event) {
+            var sendTabnum = event.target.id.split("p")[1];
+            openProfile(event,"Profile" + sendTabnum,sendTabnum)
+           });       
+        document.getElementById("nav-tab").appendChild(newTab);
     }else{
         document.getElementById('profileAlert').innerHTML = "Number of profile can be maximum 12";
          $('#profileAlert').show();
     }
-
-}
-
-function openNewTab(){
-
-    tabNum ++; 
-    //creating new tab
-    let newTab = document.createElement('a');
-    newTab.classList = "nav-item nav-link active profile but";
-    newTab.id = "p" + tabNum ;
-    newTab.innerHTML = "p" + tabNum;
-    //creating profile part
-    var newProfile = document.createElement('div');
-    newProfile.id="Profile" + tabNum;
-    newProfile.classList = "tabcontent tab-pane fade show active";
-    newProfile.setAttribute("role","tabpanel");
-    newProfile.setAttribute("aria-labelledby", "p" + tabNum);
-    //container for bootstrap
-    var container = document.createElement('div');
-    container.className="container-fluid";
-    container.appendChild(newProfile);
-    //form for boot
-    var form = document.createElement('form');
-    form.className="form-inline";
-    newProfile.appendChild(form);
-    //creating labels and inputs
-    var powLabel = document.createElement('label');
-    powLabel.className="m-2";
-    powLabel.setAttribute("for","addPower" + newTab);
-    powLabel.innerHTML = "Add pow";
-    form.appendChild(powLabel);
-
-   // newTab.addEventListener("click",openProfile(event,"Profile" + tabNum,tabNum));
-       
-    document.getElementById("nav-tab").appendChild(newTab);
+   
 };
 
-function drawChart(){
-    const CHART = document.getElementById("lineChart");
-        console.log(CHART);
-        let lineChart = new Chart(CHART, {
-            type: 'line',
-            data: {
-                labels: ['0','1','2','3','4','5','6'],
-                datasets: [{
-                    label: '# of P',
-                    data: [],
-                    backgroundColor: [
-                        'rgba(80, 0, 0, 1)',
-                        'rgba(0, 0, 235, 1)',
-                        'rgba(0, 0, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderColor: [
-                        'rgba(99, 0, 0, 1)',
-                        'rgba(1, 1, 1, 1)',
-                        'rgba(1, 1, 1, 1)',
-                        'rgba(0, 192, 0, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-
-}
-
-function addData(chart, label, data) {
-    chart.data.labels.push(label);
-    chart.data.datasets.forEach((dataset) => {
-        dataset.data.push(data);
-    });
+function addToChart(chart, power, time ,profile) {
+    //powerın oldugu noktaya sadece bir tane değer gelebiliyor her bir profil için
+    profile--;
+    chart.data.datasets[profile].data[power] = time;
     chart.update();
 }
 
-async function addToProfileTable(num) {
+function addToProfileTable(num) {
+    console.log(num);
     let timeAdded = document.getElementById("addTime" + num).value;
+    console.log(timeAdded);
     let powerAdded = document.getElementById("addPower" + num).value;
     setTimeAdded = timeAdded;
     setPowerAdded = powerAdded;
@@ -238,12 +368,8 @@ async function addToProfileTable(num) {
                 let td3 = document.createElement('td');
                 td3.textContent='Minute';
                 r1.appendChild(td3);
-
-                addData(lineChart,powerAdded,parseInt(timeAdded));
-
+                
                 let td4 = document.createElement('td');
-                //td2.textContent = data[i].deadline;
-                //td2.textContent = timePowerData[i].power;
                 if(timeAdded < 10){
                     td4.textContent = '00' + timeAdded;
                 }else{
@@ -298,9 +424,8 @@ async function addToProfileTable(num) {
                 td3.textContent='Second';
                 r1.appendChild(td3);
 
-                addData(lineChart,powerAdded,parseInt(timeAdded));
-            
-
+                //addToChart(lineChart,parseInt(powerAdded),parseInt(timeAdded),parseInt(setProfileNum));
+                
                 let td4 = document.createElement('td');
                 //td2.textContent = data[i].deadline;
                 //td2.textContent = timePowerData[i].power;
@@ -384,6 +509,7 @@ async function setForEnd() {
 
 var timeAdded = 0;
   async function checkTime(num) {
+      console.log(num);
     timeAdded = document.getElementById("addTime" + num).value;
         if(time_switch_value === 'MIN') {
             
@@ -540,98 +666,7 @@ async function getProfile() {
     document.getElementById("time_switch").value = data[0].profile.timeType;
 }
 
-//getProfile();
 
-/* async function getData() {
-    const response = await fetch('/autonomous');
-    const data = await response.json();
-
-    const todoTable = document.createElement('table');
-    const r0 = document.createElement('tr');
-    const h1 = document.createElement('th');
-    h1.textContent = 'AutoSwitch';
-    r0.appendChild(h1);
-    const h2 = document.createElement('th');
-    h2.textContent = "ProfileNo";
-    r0.appendChild(h2);
-    const h25 = document.createElement('th');
-    h25.textContent = "RowNo";
-    r0.appendChild(h25);
-    const h3 = document.createElement('th');
-    h3.textContent = "TableValues";
-    r0.appendChild(h3);
-    const h4 = document.createElement('th');
-    h4.textContent = "Begin";
-    r0.appendChild(h4);
-    const h5 = document.createElement('th');
-    h5.textContent = "End";
-    r0.appendChild(h5);
-    const h6 = document.createElement('th');
-    h6.textContent = "Method";
-    r0.appendChild(h6);
-    const h7 = document.createElement('th');
-    h7.textContent = "NextProfile";
-    r0.appendChild(h7);
-    const h8 = document.createElement('th');
-    h8.textContent = "RepeatCount";
-    r0.appendChild(h8);
-    const h9 = document.createElement('th');
-    h9.textContent = "TimeType";
-    r0.appendChild(h9);
-
-    todoTable.appendChild(r0);
-
-    console.log(data.length);
-
-    for (let i = 0; i < data.length; i++) {
-        let r1 = document.createElement('tr');
-
-        let td1 = document.createElement('td');
-        td1.textContent = data[i].setSwitchValue;
-        r1.appendChild(td1);
-
-        let td2 = document.createElement('td');
-        td2.textContent = data[i].setProfileNum;
-        r1.appendChild(td2);
-
-        let td25 = document.createElement('td');
-        td25.textContent = data[i].setRowNo;
-        r1.appendChild(td25);
-
-        let td3 = document.createElement('td');
-        td3.textContent = data[i].setTable;
-        r1.appendChild(td3);
-
-        let td4 = document.createElement('td');
-        td4.textContent = data[i].setBeginTime;
-        r1.appendChild(td4);
-
-        let td5 = document.createElement('td');
-        td5.textContent = data[i].setEndTime;
-        r1.appendChild(td5);
-
-        let td6 = document.createElement('td');
-        td6.textContent = data[i].setMethod;
-        r1.appendChild(td6);
-
-        let td7 = document.createElement('td');
-        td7.textContent = data[i].setNextProfile;
-        r1.appendChild(td7);
-
-        let td8 = document.createElement('td');
-        td8.textContent = data[i].setRepeat;
-        r1.appendChild(td8);
-
-        let td9 = document.createElement('td');
-        td9.textContent = data[i].setTimeTypeValue;
-        r1.appendChild(td9);
-
-        todoTable.appendChild(r1);
-    }
-
-    document.getElementById('table2').appendChild(todoTable);
-    //document.body.append(todoTable);
-} */
 
 getProfile();
 

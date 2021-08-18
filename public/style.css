@@ -6,6 +6,25 @@
     border:none
 }
 
-#nav-tab a {
-color: black;
+.card{
+    background-color: #DFCCF1 ;
+    
 }
+
+header > h1{
+    color: #DFCCF1 ;
+}
+
+.active a{
+    background-color: blueviolet;
+
+}
+
+.card-header{
+    color: rgb(85, 84, 84);
+}
+
+p, label, th{
+    color :  rgb(85, 84, 84);
+}
+
