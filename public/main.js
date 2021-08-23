@@ -1,35 +1,32 @@
-// const { Chart } = require("chart.js");
 
-var profiles = [];
+var profiles = []; //12
+const p1 = [];
+const p2 = [];
+const p3 = [];
+const p4 = [];
+const p5 = [];
+const p6 = [];
+const p7 = [];
+const p8 = [];
+const p9 = [];
+const p10 = [];
+const p11 = [];
+const p12 = [];
+
 var table = [];
-var rowElement = {
-    index: "Index",
-    time: "Time",
-    power: "Power"
-}
-var profile = {
-    id: 1,
-    table:[{
-        index: "Index",
-        time: "Time",
-        power: "Power"
-    }],
-    beginTime: "",
-    endTime: "",
-    timeType: "",
-    methodType: 0,
-    nextProfile: 0,
-    repeatCount: 1
-};
+
+
+
 
 var clicks = 0;
 var progressInterval;
 var timeTotal = 0;
 var profileNum = 1;
-var dataTable = document.getElementById('jsonTable1');
+//var dataTable = document.getElementById('jsonTable1');
 var setTable = '';
 var time_switch_value;
 var tabNum = 1;
+
 
 var result = "";
 let setSwitchValue = '0';
@@ -45,34 +42,17 @@ let setTimeTypeValue = 'SEC';
 //$('.alert').hide();
 
 
+
 var CHART = document.getElementById("lineChart");
     console.log(CHART)
     var lineChart = new Chart(CHART, {
         type: 'line',
         data: {
-            labels: ['0','1','2','3','4','5','6'],
-            datasets: [{
-                    label: 'P1',
-                    data: [],
-                    fill: false,
-                    borderColor: '#FFC9DE',
-                    backgroundColor: '#FFC9DE',
-                    borderWidth: 2,
-                    pointStyle: 'Stars',
-                    pointRadius: 6,
-                 },
+            //labels: ['0','1','2','3','4','5','6','7','8','9','10','11','12'],
+            labels: [],
+            datasets: [
                  {
-                    label: 'P2',
-                    data: [],
-                    fill: false,
-                    borderColor: '#FFABAB',
-                    backgroundColor: '#FFABAB',
-                    borderWidth: 2,
-                    pointStyle: 'Stars',
-                    pointRadius: 6,
-                },
-                {
-                    label: 'P3',
+                    label: 'Power',
                     data: [],
                     fill: false,
                     borderColor: '#FF9CEE',
@@ -80,97 +60,8 @@ var CHART = document.getElementById("lineChart");
                     borderWidth: 2,
                     pointStyle: 'Stars',
                     pointRadius: 6,
-                 },
-                 {
-                    label: 'P4',
-                    data: [],
-                    fill: false,
-                    borderColor: '#FFCCF9',
-                    backgroundColor: '#FFCCF9',
-                    borderWidth: 2,
-                    pointStyle: 'Stars',
-                    pointRadius: 6,
-                 },
-                 {
-                    label: 'P5',
-                    data: [],
-                    fill: false,
-                    borderColor: '#D5AAFF',
-                    backgroundColor: '#D5AAFF',
-                    borderWidth: 2,
-                    pointStyle: 'Stars',
-                    pointRadius: 6,
-                 },
-                 {
-                    label: 'P6',
-                    data: [],
-                    fill: false,
-                    borderColor: '#B28DFF',
-                    backgroundColor: '#B28DFF',
-                    borderWidth: 2,
-                    pointStyle: 'Stars',
-                    pointRadius: 6,
-                 },
-                 {
-                    label: 'P7',
-                    data: [],
-                    fill: false,
-                    borderColor: '#DCD3FF',
-                    backgroundColor: '#DCD3FF',
-                    borderWidth: 2,
-                    pointStyle: 'Stars',
-                    pointRadius: 6,
-                 },
-                 {
-                    label: 'P8',
-                    data: [],
-                    fill: false,
-                    borderColor: '#AFCBFF',
-                    backgroundColor: '#AFCBFF',
-                    borderWidth: 2,
-                    pointStyle: 'Stars',
-                    pointRadius: 6,
-                 },
-                 {
-                    label: 'P9',
-                    data: [],
-                    fill: false,
-                    borderColor: '#6EB5FF',
-                    backgroundColor: '#6EB5FF',
-                    borderWidth: 2,
-                    pointStyle: 'Stars',
-                    pointRadius: 6,
-                 },
-                 {
-                    label: 'P10',
-                    data: [],
-                    fill: false,
-                    borderColor: '#BFFCC6',
-                    backgroundColor: '#BFFCC6',
-                    borderWidth: 2,
-                    pointStyle: 'Stars',
-                    pointRadius: 6,
-                 },
-                 {
-                    label: 'P11',
-                    data: [],
-                    fill: false,
-                    borderColor: '#E7FFAC',
-                    backgroundColor: '#E7FFAC',
-                    borderWidth: 2,
-                    pointStyle: 'Stars',
-                    pointRadius: 6,
-                 },
-                {
-                    label: 'P12',
-                    data: [],
-                    fill: false,
-                    borderColor: '#FFF5BA',
-                    backgroundColor: '#FFF5BA',
-                    borderWidth: 2,
-                    pointStyle: 'Stars',
-                    pointRadius: 6,
-            }],
+                 }
+                ],
         },
         options: {}
     });
@@ -237,12 +128,43 @@ function openProfile( evt,profileName, num) {
     }
     document.getElementById(profileName).style.display="block";
     evt.currentTarget.className += " active";
+    if(num==2){
+        showTableandChart(p2);
+    }else if(num==1){     
+        showTableandChart(p1); 
+    }
+    else if(num==3){
+        showTableandChart(p3);
+    }
+    else if(num==4){
+        showTableandChart(p4);
+    }
+    else if(num==5){
+        showTableandChart(p5);
+    }
+    else if(num==6){
+        showTableandChart(p6);
+    }
+    else if(num==7){
+        showTableandChart(p8);
+    }
+    else if(num==9){
+        showTableandChart(p9);
+    }
+    else if(num==10){
+        showTableandChart(p10);
+    }
+    else if(num==11){
+        showTableandChart(p11);
+    }
+    else if(num==12){
+        showTableandChart(p12);
+    }
+
+
 };
 
-function createTable(){
 
-
-};
 
 function openNewTab(){
   if(tabNum<11){
@@ -305,8 +227,8 @@ function openNewTab(){
         addButton.classList="btn btn-primary btn-sm";
         addButton.innerHTML="<i class='fa fa-plus'></i>";
         addButton.addEventListener("click",function(event){
-            var sendTabnum = event.target.id.split("addButton")[1];
-            addToProfileTable(sendTabnum)
+            var sendTabnum = event.currentTarget.id.split("addButton")[1];
+            addToArray(sendTabnum);
         });
         buttoncontainer.appendChild(addButton);
         form.appendChild(buttoncontainer);
@@ -320,6 +242,8 @@ function openNewTab(){
             openProfile(event,"Profile" + sendTabnum,sendTabnum)
            });       
         document.getElementById("nav-tab").appendChild(newTab);
+
+           //numofprofile++;
     }else{
         document.getElementById('profileAlert').innerHTML = "Number of profile can be maximum 12";
          $('#profileAlert').show();
@@ -327,140 +251,158 @@ function openNewTab(){
    
 };
 
-function addToChart(chart, power, time ,profile) {
-    //powerın oldugu noktaya sadece bir tane değer gelebiliyor her bir profil için
-    profile--;
-    chart.data.datasets[profile].data[power] = time;
+function deleteTab(){
+    
+    if(tabNum > 1){
+        document.getElementById('p'+tabNum).remove();
+        document.getElementById('Profile' + tabNum).remove();
+        tabNum--;
+ }
+    
+}
+
+function addToChart(chart, power, time,x, temptime) {
+
+    chart.data.datasets[0].data[x] = power;
+    chart.data.labels[x] = temptime
     chart.update();
 }
 
-function addToProfileTable(num) {
-    console.log(num);
+
+function addToArray(num) {
+
+    var rowElement = {
+        profile:"profile",
+        index: "Index",
+        secMin : "type",
+        time: "Time",
+        power: "Power",
+        
+    }
+
+    
     let timeAdded = document.getElementById("addTime" + num).value;
     console.log(timeAdded);
     let powerAdded = document.getElementById("addPower" + num).value;
     setTimeAdded = timeAdded;
     setPowerAdded = powerAdded;
+
+    rowElement['type']=time_switch_value;
+    console.log(time_switch_value);
+    if(timeAdded <10){
+        timeAdded = '00' + timeAdded;
+    }else if(timeAdded <100 ){
+        timeAdded = '0' + timeAdded;
+    }
+    rowElement['profile'] = 'p' + num;
+    rowElement['time'] = parseInt(timeAdded);
+    rowElement['power']=parseInt(powerAdded);
+    console.log(rowElement);
     
-    if (setRowNo <= 12) {
-        if(time_switch_value === 'MIN'){
-            if (timeAdded <= 0 || timeAdded > 60) {
-                document.getElementById('alert1').innerHTML = "Time Value must be between 0-60";
-                $('#alert1').show();
-            } else if (powerAdded <= 0 || powerAdded > 5) {
-                document.getElementById('alert1').innerHTML = "Power Value must be between 0-6";
-                $('#alert1').show();
-            } else {
-                $('#alert1').hide();
-
-                let r1 = document.createElement('tr');
-
-                let td1 = document.createElement('td');
-                td1.textContent = 'P' + setProfileNum;
-                r1.appendChild(td1);
-
-                let td2 = document.createElement('td');
-                //td1.textContent = data[i].todo;
-                //td1.textContent = timePowerData[i].time;
-                td2.textContent = setRowNo;
-                r1.appendChild(td2);
-
-                let td3 = document.createElement('td');
-                td3.textContent='Minute';
-                r1.appendChild(td3);
-                
-                let td4 = document.createElement('td');
-                if(timeAdded < 10){
-                    td4.textContent = '00' + timeAdded;
-                }else{
-                    td4.textContent = timeAdded;
-                }
-                timeTotal += parseInt(td4.textContent);
-                r1.appendChild(td4);
-
-                let td5 = document.createElement('td');
-                //td2.textContent = data[i].deadline;
-                //td2.textContent = timePowerData[i].power;
-                td5.textContent = powerAdded;
-                r1.appendChild(td5);
-
-                let deleteButton = document.createElement('button');
-                 deleteButton.classList = "btn btn-danger btn-sm"
-                 deleteButton.id = "delete-btn"
-                 deleteButton.innerHTML = "<i class='fa fa-trash'></i>"
-                 deleteButton.onclick = function() {
-                     $(this).closest("tr").remove();
-                 };
-                 deleteButton.style = "margin:5px 0 0 4px"
-                r1.appendChild(deleteButton);
-
-                document.getElementById('bodyOfTable').appendChild(r1); 
-                setRowNo++;
-
-            }
+   
+    if(rowElement['profile'] === 'p1'){
+        if(p1.length < 12){
+            console.log(rowElement);
+            console.log(p1);
+            p1.push(rowElement);
+            console.log(rowElement);
+            console.log(p1);
         }else{
-            if (timeAdded <= 0 || timeAdded > 240) {
-                document.getElementById('alert1').innerHTML = "Time Value must be between 0-60";
-                $('#alert1').show();
-            } else if (powerAdded <= 0 || powerAdded > 5) {
-                document.getElementById('alert1').innerHTML = "Power Value must be between 0-6";
-                $('#alert1').show();
-            } else {
-                $('#alert1').hide();
-
-                let r1 = document.createElement('tr');
-
-                let td1 = document.createElement('td');
-                td1.textContent = 'P' + setProfileNum;
-                r1.appendChild(td1);
-
-                let td2 = document.createElement('td');
-                //td1.textContent = data[i].todo;
-                //td1.textContent = timePowerData[i].time;
-                td2.textContent = setRowNo;
-                r1.appendChild(td2);
-
-                let td3 = document.createElement('td');
-                td3.textContent='Second';
-                r1.appendChild(td3);
-
-                //addToChart(lineChart,parseInt(powerAdded),parseInt(timeAdded),parseInt(setProfileNum));
-                
-                let td4 = document.createElement('td');
-                //td2.textContent = data[i].deadline;
-                //td2.textContent = timePowerData[i].power;
-                if(timeAdded < 10){
-                    td4.textContent = '00' + timeAdded;
-                }else if(timeAdded<100){
-                    td4.textContent = '0' + timeAdded;
-                }else{
-                    td4.textContent = timeAdded;
-                }
-                timeTotal += parseInt(td4.textContent);
-                r1.appendChild(td4);
-
-                let td5 = document.createElement('td');
-                //td2.textContent = data[i].deadline;
-                //td2.textContent = timePowerData[i].power;
-                td5.textContent = powerAdded;
-                r1.appendChild(td5);
-
-
-                 let deleteButton = document.createElement('button');
-                 deleteButton.classList = "btn btn-danger btn-sm"
-                 deleteButton.id = "delete-btn"
-                 deleteButton.innerHTML = "<i class='fa fa-trash'></i>"
-                 deleteButton.onclick = function() {
-                     $(this).closest("tr").remove();
-                 };
-                 deleteButton.style = "margin:5px 0 0 4px"
-                r1.appendChild(deleteButton);
-                    
-                setRowNo++;
-                document.getElementById('bodyOfTable').appendChild(r1); 
-            }
-
+            $('#alert').innerHTML = "Row Number must be between 0-12";
+            $('#alert').show();
+        }    
+        showTableandChart(p1); 
+    }else if(rowElement['profile']=== 'p2'){
+        if(p2.length < 12){
+            p2.push(rowElement);
+            console.log(p2);
+        }else{
+            $('#alert').innerHTML = "Row Number must be between 0-12";
+            $('#alert').show();
         }
+        showTableandChart(p2);     
+    }else if(rowElement['profile']=== 'p3'){
+        if(p3.length < 12){
+            p3.push(rowElement);
+        }else{
+            $('#alert').innerHTML = "Row Number must be between 0-12";
+            $('#alert').show();
+        }   
+        showTableandChart(p3);  
+    }else if(rowElement['profile']=== 'p4'){
+        if(p4.length < 12){
+            p4.push(rowElement);
+        }else{
+            $('#alert').innerHTML = "Row Number must be between 0-12";
+            $('#alert').show();
+        }  
+        showTableandChart(p4);   
+    }else if(rowElement['profile']=== 'p5'){
+        if(p5.length < 12){
+            p5.push(rowElement);
+        }else{
+            $('#alert').innerHTML = "Row Number must be between 0-12";
+            $('#alert').show();
+        }    
+        showTableandChart(p5); 
+    }else if(rowElement['profile']=== 'p6'){
+        if(p6.length < 12){
+            p6.push(rowElement);
+        }else{
+            $('#alert').innerHTML = "Row Number must be between 0-12";
+            $('#alert').show();
+        }    
+        showTableandChart(p6); 
+    }else if(rowElement['profile']=== 'p7'){
+        if(p7.length < 12){
+            p7.push(rowElement);
+        }else{
+            $('#alert').innerHTML = "Row Number must be between 0-12";
+            $('#alert').show();
+        }    
+        showTableandChart(p7); 
+    }else if(rowElement['profile']=== 'p8'){
+        if(p8.length < 12){
+            p8.push(rowElement);
+        }else{
+            $('#alert').innerHTML = "Row Number must be between 0-12";
+            $('#alert').show();
+        }    
+        showTableandChart(p8); 
+    }else if(rowElement['profile']=== 'p9'){
+        if(p9.length < 12){
+            p9.push(rowElement);
+        }else{
+            $('#alert').innerHTML = "Row Number must be between 0-12";
+            $('#alert').show();
+        }  
+        showTableandChart(p9);   
+    }else if(rowElement['profile']=== 'p10'){
+        if(p10.length < 12){
+            p10.push(rowElement);
+        }else{
+            $('#alert').innerHTML = "Row Number must be between 0-12";
+            $('#alert').show();
+        }    
+        showTableandChart(p10); 
+    }else if(rowElement['profile']=== 'p11'){
+        if(p11.length < 12){
+            p11.push(rowElement);
+        }else{
+            $('#alert').innerHTML = "Row Number must be between 0-12";
+            $('#alert').show();
+        }    
+        showTableandChart(p11); 
+    }else if(rowElement['profile']=== 'p12'){
+        if(p12.length < 12){
+            p12.push(rowElement);
+        }else{
+            $('#alert').innerHTML = "Row Number must be between 0-12";
+            $('#alert').show();
+        }   
+        showTableandChart(p12); 
+    }
+
         document.getElementById('addPower' + num).value="";
         document.getElementById('addPower' + num).placeholder="0-6";
         document.getElementById('addTime' + num).value="";
@@ -469,13 +411,53 @@ function addToProfileTable(num) {
         }else{
            document.getElementById('addTime' + num).placeholder='0-240';
         }   
-        
-        
-          
-    } else {
-        $('#alert').innerHTML = "Row Number must be between 0-12";
-        $('#alert').show();
-    } 
+}
+
+function showTableandChart(obj){
+
+    var table = document.getElementById('data');
+    table.style.display ='block';
+  // document.getElementById('proName').innerHTML=item['profile'];
+    var btable = document.getElementById('bodyOfTable');
+    var cols = btable.getElementsByTagName('td');
+    var rows = btable.getElementsByTagName('tr');
+
+    for(var i=0;i<60;i+=5){
+        cols[i].textContent="";
+        cols[i+1].textContent="";
+        cols[i+2].textContent="";
+        cols[i+3].textContent="";
+        cols[i+4].textContent="";
+
+    }
+    var indx = 0;
+    var row = 0;
+    var temptime = 0;
+    for(var item of obj){
+        console.log(item);
+        cols[indx].textContent=row + 1;
+        cols[indx+1].textContent=item['profile'];
+        cols[indx+2].textContent=item['type'];
+        cols[indx+3].textContent=item['time'];
+        temptime += item['time'];
+        cols[indx+4].textContent=item['power'];
+        let td = document.createElement('td');
+        let deleteButton = document.createElement('button');
+        deleteButton.classList = "btn btn-danger btn-sm"
+        deleteButton.id = "delete-btn"
+        deleteButton.innerHTML = "<i class='fa fa-trash'></i>"
+        deleteButton.onclick = function() {
+            item.filter(function(){
+                
+            });
+        };
+        deleteButton.style = "margin:5px 0 0 4px";
+        rows[row].appendChild(deleteButton);
+        addToChart(lineChart,item['power'],item['time'], row, temptime);
+        row++;
+        indx+=5; 
+    }
+
 }
 
 var beginResult = 0,
@@ -508,7 +490,7 @@ async function setForEnd() {
 }
 
 var timeAdded = 0;
-  async function checkTime(num) {
+   function checkTime(num) {
       console.log(num);
     timeAdded = document.getElementById("addTime" + num).value;
         if(time_switch_value === 'MIN') {

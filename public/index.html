@@ -34,8 +34,8 @@
         <p id="errorMsg"></p>
     </section>
     <section class="container">
-        <div class="card-group">
-                <div class="card  text-center">
+        <div class="card-deck">
+                <div class="card text-center">
                     <div class="card-body">
                         <div class="column left">
                             <form id="my-form">
@@ -58,158 +58,250 @@
                                     <div class="tab">
                                         <nav>
                                             <div class="nav nav-tabs" id="nav-tab" role="tablist" style="border:none">
+                                            <a class="nav-item bg-danger nav-link btn-sm text-white" id="button" data-toggle="tab" onclick="deleteTab()" value="button" role="tab" aria-selected="true"><i class="fa fa-trash"></i></a>    
                                             <a class="nav-item bg-primary nav-link btn-sm text-white" id="button" data-toggle="tab" onclick="openNewTab()" value="button" role="tab" aria-selected="true"><i class="fa fa-plus"></i></a>    
-                                             <a class="nav-item nav-link active profile but" id="p1" data-toggle="tab" onclick="openProfile(event,'Profile1', 1)" value="P1" role="tab" aria-selected="true">p1</a>
+                                            <a class="nav-item nav-link active profile but" id="p1" data-toggle="tab" onclick="openProfile(event,'Profile1', 1)" value="P1" role="tab" aria-selected="true">p1</a>
                                             </div>
                                         </nav>
                                     </div>
                                     </br>
                                     <div class="alert alert-danger text-center col-sm-10 mx-auto" id ="profileAlert" role="alert"></div>
                                     </br>
-                                    <!-- Time Type selector -->
-                                    <p class="h6 text-center">Time Type Selector</p>
-                                    <p class="text-center">Sec | Min </p>
-                                    <div class="form-check form-switch text-center">
-                                        <label class="form-check-label" for="time_switch">
-                                            <input class="form-check-input " type="checkbox" id="time_switch">
-                                        </label>
-                                    </div>
-                                    </br>
-                                    <div class="tab-content" id="nav-tabContent">
-                                        <div id="Profile1" class="tabcontent tab-pane fade show active" role="tabpanel" aria-labelledby="p1"> 
-                                                <div class="container-fluid" >
-                                                    <form class="form-inline">
-                                                        <label for="addPower1" class="m-2">Add Power</label>
-                                                        <input type="text" class="form-control m-2 col-sm-1" id="addPower1" onchange="checkPower(1)" required>
-                                                        <label for="addTime1" class="m-2">Add Time</label>
-                                                        <input type="text" class="form-control m-2 col-sm-1 time" id="addTime1" onchange="checkTime(1)" required>
-                                                        <div class="d-grid gap-2 col-sm-1 mx-auto">
-                                                            <button class="btn btn-primary btn-sm" type="button" onclick="addToProfileTable(1)"><i class="fa fa-plus"></i></button>       
-                                                        </div>
+                                   <div class="card-group">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <!-- Time Type selector -->
+                                                <p class="h6 text-center">Time Type Selector</p>
+                                                <p class="text-center">Sec | Min </p>
+                                                <div class="form-check form-switch text-center">
+                                                    <label class="form-check-label" for="time_switch">
+                                                        <input class="form-check-input " type="checkbox" id="time_switch">
+                                                    </label>
+                                                </div>
+                                                </br>
+                                                <div class="tab-content" id="nav-tabContent">
+                                                    <div id="Profile1" class="tabcontent tab-pane fade show active" role="tabpanel" aria-labelledby="p1"> 
+                                                            <div class="container-fluid" >
+                                                                <form class="form-inline">
+                                                                    <label for="addPower1" class="m-2">Add Power</label>
+                                                                    <input type="text" class="form-control m-2 col-sm-1" id="addPower1" onchange="checkPower(1)" required>
+                                                                    <label for="addTime1" class="m-2">Add Time</label>
+                                                                    <input type="text" class="form-control m-2 col-sm-1 time" id="addTime1" onchange="checkTime(1)" required>
+                                                                    <div class="d-grid gap-2 col-sm-1 mx-auto">
+                                                                        <button class="btn btn-primary btn-sm" type="button" onclick="addToArray(1)"><i class="fa fa-plus"></i></button>       
+                                                                    </div>
+                                                                <br>
+                                                                </form>
+                                                            </div>   
+                                                    </div>                         
+                                                    
+                                                </div>
+                                                </form>
+                                                <div class="alert alert-danger m-2 mx-auto" id ="alert1" role="alert"></div>
+                                                <br>
+                                                <br>
+                                                <div class="table">   
+                                                    <table class="table-striped " id="data" style=" display: none;">
+                                                        <thead>
+                                                        <tr>    
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Profile</th>
+                                                        <th scope="col">Sec/Min</th>
+                                                        <th scope="col">Time</th>
+                                                        <th scope="col">Power</th>
+                                                        </tr>
+        
+                                                        </thead>
+                                                        <tbody id="bodyOfTable" >
+                                                        <tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                        <td></td>    
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                        <td></td>    
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                        <td></td>   
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                        <td></td>                     
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        </tr>
+                                                        </tbody>
+                                                        </table>
+                                                        <canvas id="lineChart" width="200" height="200"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <form id="my-form">
+                                                    <!-- Begin-End Time selector -->
+                                                    </br>
+                                                    <div class="card-header text-center">
+                                                        Profile </br> Begin - End Time
+                                                    </div>
+                                                    </br>
+                                                    <div>
+                                                     <div>
+                                                    <label for="begin">Begin Time </label> 
+                                                    <input type="time" id="begin" min="00:00" max="23:59" onchange="setForBegin()" required></div>
+                                                    <div>
                                                     <br>
-                                                    </form>
-                                                </div>   
-                                        </div>                         
-                                        
-                                    </div>
-                            </form>
-                            <div class="alert alert-danger m-2 mx-auto" id ="alert1" role="alert"></div>
-                            <table class="table text-white" id="jsonTable1">
-            
-                                <thead>
-                                  <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Index</th>
-                                    <th scope="col">Sec/Min</th>
-                                    <th scope="col">Time</th>
-                                    <th scope="col">Power</th>
-                                    <th scope="col"></th>
-                                  </tr>
-                                </thead>
-                                <tbody id="bodyOfTable">
-                                </tbody>
-                              </table>
-                              <canvas id="lineChart" width="200" height="200"></canvas>
-
-                    </div>
-                </div>
-            </div>
-            <div class="card ">
-                <div class="card-body">
-                    <div class="column right">
-                        <form id="my-form">
-                            <!-- Begin-End Time selector -->
-                            </br>
-                            <div class="card-header text-center">
-                                Profile </br> Begin - End Time
-                            </div>
-                            </br>
-                            <div>
-                             <div>
-                            <label for="begin">Begin Time </label> 
-                            <input type="time" id="begin" min="00:00" max="23:59" onchange="setForBegin()" required></div>
-                            <div>
-                            <br>
-                            <label for="end">End Time </label>
-                            <input type="time" id="end" min="00:00" max="23:59" onchange="setForEnd()" required>
-                            </div>
-                            </br>
-                            </br>
-                            </br>
-                            <!-- Method selector -->
-                            <div class="card-header text-center">
-                                Methods
-                            </div>
-                            </br>
-                            <div class="box">
-                                <select id="select" onchange="getMethod()">
-                                    <option value="1">Method 1</option>
-                                    <option value="2">Method 2</option>
-                                    <option value="3">Method 3</option>
-                                    <option value="4">Method 4</option>
-                                    <option value="5">Method 5</option>
-                                    <option value="6">Method 6</option>
-                                    <option value="7">Method 7</option>
-                                    <option value="8">Method 8</option>
-                                    <option value="9">Method 9</option>
-                                </select>
-                            </div>
-                            </br>
-                            <!-- Next Profile selector -->
-                            <div class="card-header text-center">
-                                Next Profile
-                            </div>    
-                            <div class="box">
-                                <select id="nextProfile" onchange="getNextProfile()">
-                                    <option value="0">0</option>
-                                    <option value="1">P1</option>
-                                    <option value="2">P2</option>
-                                    <option value="3">P3</option>
-                                    <option value="4">P4</option>
-                                    <option value="5">P5</option>
-                                    <option value="6">P6</option>
-                                    <option value="7">P7</option>
-                                    <option value="8">P8</option>
-                                </select>
-                            </div>  
-                            </br>
-                            <!-- Next Profile selector -->
-                            </br>
-                            <div>
-                                <label for="repeatCount">Repeat Count </label>
-                                <input type="number" id="repeatCount" min="0" max="12" onchange="setRepeatCount()">
-                            </div>
-                        </br>
-                        </br>
-                            <!-- extra switches -->
-                            <div class="card-header text-center">
-                                Switches
-                            </div>
-                            <div class="form-check form-switch">
-                                <label class="form-check-label" for="switch11">
-                                    <input class="form-check-input" type="checkbox" id="switch11">
-                                </label>
-                            </div>
-                            <div class="form-check form-switch">
-                                <label class="form-check-label" for="switch22">
-                                    <input class="form-check-input" type="checkbox" id="switch22">
-                                </label>
-                            </div>
-                            <div class="form-check form-switch">
-                                <label class="form-check-label" for="switch33">
-                                    <input class="form-check-input" type="checkbox" id="switch33">
-                                </label>
-                            </div>
-                            <div class="form-check form-switch">
-                                <label class="form-check-label" for="switch44">
-                                    <input class="form-check-input" type="checkbox" id="switch44">
-                                </label>
-                            </div>     
-                        </form>
+                                                    <label for="end">End Time </label>
+                                                    <input type="time" id="end" min="00:00" max="23:59" onchange="setForEnd()" required>
+                                                    </div>
+                                                    </br>
+                                                    </br>
+                                                    </br>
+                                                    <!-- Method selector -->
+                                                    <div class="card-header text-center">
+                                                        Methods
+                                                    </div>
+                                                    </br>
+                                                    <div class="box">
+                                                        <select id="select" onchange="getMethod()">
+                                                            <option value="1">Method 1</option>
+                                                            <option value="2">Method 2</option>
+                                                            <option value="3">Method 3</option>
+                                                            <option value="4">Method 4</option>
+                                                            <option value="5">Method 5</option>
+                                                            <option value="6">Method 6</option>
+                                                            <option value="7">Method 7</option>
+                                                            <option value="8">Method 8</option>
+                                                            <option value="9">Method 9</option>
+                                                        </select>
+                                                    </div>
+                                                    </br>
+                                                    <!-- Next Profile selector -->
+                                                    <div class="card-header text-center">
+                                                        Next Profile
+                                                    </div>    
+                                                    <div class="box">
+                                                        <select id="nextProfile" onchange="getNextProfile()">
+                                                            <option value="0">0</option>
+                                                            <option value="1">P1</option>
+                                                            <option value="2">P2</option>
+                                                            <option value="3">P3</option>
+                                                            <option value="4">P4</option>
+                                                            <option value="5">P5</option>
+                                                            <option value="6">P6</option>
+                                                            <option value="7">P7</option>
+                                                            <option value="8">P8</option>
+                                                        </select>
+                                                    </div>  
+                                                    </br>
+                                                    <!-- Next Profile selector -->
+                                                    </br>
+                                                    <div>
+                                                        <label for="repeatCount">Repeat Count </label>
+                                                        <input type="number" id="repeatCount" min="0" max="12" onchange="setRepeatCount()">
+                                                    </div>
+                                                </br>
+                                                </br>
+                                                    <!-- extra switches -->
+                                                    <div class="card-header text-center">
+                                                        Switches
+                                                    </div>
+                                                    <div class="form-check form-switch">
+                                                        <label class="form-check-label" for="switch11">
+                                                            <input class="form-check-input" type="checkbox" id="switch11">
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-switch">
+                                                        <label class="form-check-label" for="switch22">
+                                                            <input class="form-check-input" type="checkbox" id="switch22">
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-switch">
+                                                        <label class="form-check-label" for="switch33">
+                                                            <input class="form-check-input" type="checkbox" id="switch33">
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-switch">
+                                                        <label class="form-check-label" for="switch44">
+                                                            <input class="form-check-input" type="checkbox" id="switch44">
+                                                        </label>
+                                                    </div>     
+                                                </form>
+                                                                                                
+                                            </div>
+                                        </div>
+                                   </div>
+                        </div>
                     </div>
                 </div>
                 <script src="main.js"></script>
-            </div>
         </div>
     </section>
     </br>

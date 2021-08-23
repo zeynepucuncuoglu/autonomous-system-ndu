@@ -24,7 +24,18 @@ header > h1{
     color: rgb(85, 84, 84);
 }
 
-p, label, th{
+p, label,th,td,tr,table{
     color :  rgb(85, 84, 84);
+    border-color: rgb(85, 84, 84);
+
+}
+td{
+    width: 70px;
+    height: 30px;
+}
+
+table{
+margin-left: auto;
+margin-right: auto;
 }
 

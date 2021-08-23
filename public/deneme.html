@@ -205,5 +205,186 @@
                                                 </div>
                                             </div> 
                                         </div>     -->
+
+
+
+
+
+
+<!-- 
+
+                                                        addtoooooo
+
+                                                        if (setRowNo <= 12) {
+        if(time_switch_value === 'MIN'){
+            if (timeAdded <= 0 || timeAdded > 60) {
+                document.getElementById('alert1').innerHTML = "Time Value must be between 0-60";
+                $('#alert1').show();
+            } else if (powerAdded <= 0 || powerAdded > 5) {
+                document.getElementById('alert1').innerHTML = "Power Value must be between 0-6";
+                $('#alert1').show();
+            } else {
+                $('#alert1').hide();
+
+                let r1 = document.createElement('tr');
+
+                let td1 = document.createElement('td');
+                td1.textContent = 'P' + setProfileNum;
+                r1.appendChild(td1);
+
+                let td2 = document.createElement('td');
+                //td1.textContent = data[i].todo;
+                //td1.textContent = timePowerData[i].time;
+                td2.textContent = setRowNo;
+                r1.appendChild(td2);
+
+                let td3 = document.createElement('td');
+                td3.textContent='Minute';
+                r1.appendChild(td3);
+                
+                let td4 = document.createElement('td');
+                if(timeAdded < 10){
+                    td4.textContent = '00' + timeAdded;
+                }else{
+                    td4.textContent = timeAdded;
+                }
+                timeTotal += parseInt(td4.textContent);
+                r1.appendChild(td4);
+
+                let td5 = document.createElement('td');
+                //td2.textContent = data[i].deadline;
+                //td2.textContent = timePowerData[i].power;
+                td5.textContent = powerAdded;
+                r1.appendChild(td5);
+
+                let deleteButton = document.createElement('button');
+                 deleteButton.classList = "btn btn-danger btn-sm"
+                 deleteButton.id = "delete-btn"
+                 deleteButton.innerHTML = "<i class='fa fa-trash'></i>"
+                 deleteButton.onclick = function() {
+                     $(this).closest("tr").remove();
+                 };
+                 deleteButton.style = "margin:5px 0 0 4px"
+                r1.appendChild(deleteButton);
+
+                document.getElementById('bodyOfTable').appendChild(r1); 
+                setRowNo++;
+
+            }
+        }else{
+            if (timeAdded <= 0 || timeAdded > 240) {
+                document.getElementById('alert1').innerHTML = "Time Value must be between 0-60";
+                $('#alert1').show();
+            } else if (powerAdded <= 0 || powerAdded > 5) {
+                document.getElementById('alert1').innerHTML = "Power Value must be between 0-6";
+                $('#alert1').show();
+            } else {
+                $('#alert1').hide();
+
+                let r1 = document.createElement('tr');
+
+                let td1 = document.createElement('td');
+                td1.textContent = 'P' + setProfileNum;
+                r1.appendChild(td1);
+
+                let td2 = document.createElement('td');
+                //td1.textContent = data[i].todo;
+                //td1.textContent = timePowerData[i].time;
+                td2.textContent = setRowNo;
+                r1.appendChild(td2);
+
+                let td3 = document.createElement('td');
+                td3.textContent='Second';
+                r1.appendChild(td3);
+
+                //addToChart(lineChart,parseInt(powerAdded),parseInt(timeAdded),parseInt(setProfileNum));
+                
+                let td4 = document.createElement('td');
+                //td2.textContent = data[i].deadline;
+                //td2.textContent = timePowerData[i].power;
+                if(timeAdded < 10){
+                    td4.textContent = '00' + timeAdded;
+                }else if(timeAdded<100){
+                    td4.textContent = '0' + timeAdded;
+                }else{
+                    td4.textContent = timeAdded;
+                }
+                timeTotal += parseInt(td4.textContent);
+                r1.appendChild(td4);
+
+                let td5 = document.createElement('td');
+                //td2.textContent = data[i].deadline;
+                //td2.textContent = timePowerData[i].power;
+                td5.textContent = powerAdded;
+                r1.appendChild(td5);
+
+
+                 let deleteButton = document.createElement('button');
+                 deleteButton.classList = "btn btn-danger btn-sm"
+                 deleteButton.id = "delete-btn"
+                 deleteButton.innerHTML = "<i class='fa fa-trash'></i>"
+                 deleteButton.onclick = function() {
+                     $(this).closest("tr").remove();
+                 };
+                 deleteButton.style = "margin:5px 0 0 4px"
+                r1.appendChild(deleteButton);
+                    
+                setRowNo++;
+                document.getElementById('bodyOfTable').appendChild(r1); 
+            }
+
+        }
+        document.getElementById('addPower' + num).value="";
+        document.getElementById('addPower' + num).placeholder="0-6";
+        document.getElementById('addTime' + num).value="";
+        if(time_switch_value === 'MIN'){    
+           document.getElementById('addTime' + num).placeholder='0-60'; 
+        }else{
+           document.getElementById('addTime' + num).placeholder='0-240';
+        }   
+        
+        
+          
+    } else {
+        $('#alert').innerHTML = "Row Number must be between 0-12";
+        $('#alert').show();
+    } 
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ortanın içi
+
+
+
+
+
+
+
+
+sağın içiiiii
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>
