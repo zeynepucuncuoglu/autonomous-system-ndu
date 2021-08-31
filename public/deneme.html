@@ -9,6 +9,8 @@
     <title>Document</title>
 </head>
 <body>
+
+    
 <!--  tabbbbb                                 <a class="nav-item nav-link profile but" id="p2" data-toggle="tab" onclick="openProfile(event,'Profile2', 2)" value="P2" role="tab"  aria-selected="false" style="visibility: hidden;">p2</a>
                                             <a class="nav-item nav-link profile but" id="p3" data-toggle="tab" onclick="openProfile(event,'Profile3', 3)" value="P3" role="tab"  aria-selected="false" style="visibility: hidden;">p3</a>
                                             <a class="nav-item nav-link profile but" id="p4" data-toggle="tab" onclick="openProfile(event,'Profile4', 4)" value="P4" role="tab"  aria-selected="false" style="visibility: hidden;">p4</a>  
@@ -374,6 +376,98 @@ ortanın içi
 
 
 sağın içiiiii
+
+
+
+<form id="my-form">
+    <!-- Begin-End Time selector -->
+    </br>
+    <div class="card-header text-center">
+        Profile </br> Begin - End Time
+    </div>
+    </br>
+    <div>
+     <div>
+    <label for="begin">Begin Time </label> 
+    <input type="time" id="begin" min="00:00" max="23:59" onchange="setForBegin()" required></div>
+    <div>
+    <br>
+    <label for="end">End Time </label>
+    <input type="time" id="end" min="00:00" max="23:59" onchange="setForEnd()" required>
+    </div>
+    </br>
+    </br>
+    </br>
+    <!-- Method selector -->
+    <div class="card-header text-center">
+        Methods
+    </div>
+    </br>
+    <div class="box">
+        <select id="select" onchange="getMethod()">
+            <option value="1">Method 1</option>
+            <option value="2">Method 2</option>
+            <option value="3">Method 3</option>
+            <option value="4">Method 4</option>
+            <option value="5">Method 5</option>
+            <option value="6">Method 6</option>
+            <option value="7">Method 7</option>
+            <option value="8">Method 8</option>
+            <option value="9">Method 9</option>
+        </select>
+    </div>
+    </br>
+    <!-- Next Profile selector -->
+    <div class="card-header text-center">
+        Next Profile
+    </div>    
+    <div class="box">
+        <select id="nextProfile" onchange="getNextProfile()">
+            <option value="0">0</option>
+            <option value="1">P1</option>
+            <option value="2">P2</option>
+            <option value="3">P3</option>
+            <option value="4">P4</option>
+            <option value="5">P5</option>
+            <option value="6">P6</option>
+            <option value="7">P7</option>
+            <option value="8">P8</option>
+        </select>
+    </div>  
+    </br>
+    <!-- Next Profile selector -->
+    </br>
+    <div>
+        <label for="repeatCount">Repeat Count </label>
+        <input type="number" id="repeatCount" min="0" max="12" onchange="setRepeatCount()">
+    </div>
+</br>
+</br>
+    <!-- extra switches -->
+    <div class="card-header text-center">
+        Switches
+    </div>
+    <div class="form-check form-switch">
+        <label class="form-check-label" for="switch11">
+            <input class="form-check-input" type="checkbox" id="switch11">
+        </label>
+    </div>
+    <div class="form-check form-switch">
+        <label class="form-check-label" for="switch22">
+            <input class="form-check-input" type="checkbox" id="switch22">
+        </label>
+    </div>
+    <div class="form-check form-switch">
+        <label class="form-check-label" for="switch33">
+            <input class="form-check-input" type="checkbox" id="switch33">
+        </label>
+    </div>
+    <div class="form-check form-switch">
+        <label class="form-check-label" for="switch44">
+            <input class="form-check-input" type="checkbox" id="switch44">
+        </label>
+    </div>     
+</form>
 
 
 

@@ -1,22 +1,8 @@
 
 var profiles = []; //12
-const p1 = [];
-const p2 = [];
-const p3 = [];
-const p4 = [];
-const p5 = [];
-const p6 = [];
-const p7 = [];
-const p8 = [];
-const p9 = [];
-const p10 = [];
-const p11 = [];
-const p12 = [];
+const px = {};
 
 var table = [];
-
-
-
 
 var clicks = 0;
 var progressInterval;
@@ -52,7 +38,7 @@ var CHART = document.getElementById("lineChart");
             labels: [],
             datasets: [
                  {
-                    label: 'Power',
+                    label: '',
                     data: [],
                     fill: false,
                     borderColor: '#FF9CEE',
@@ -128,40 +114,10 @@ function openProfile( evt,profileName, num) {
     }
     document.getElementById(profileName).style.display="block";
     evt.currentTarget.className += " active";
-    if(num==2){
-        showTableandChart(p2);
-    }else if(num==1){     
-        showTableandChart(p1); 
+    if(px[num]!=undefined){
+        showTableandChart(px[num]);
     }
-    else if(num==3){
-        showTableandChart(p3);
-    }
-    else if(num==4){
-        showTableandChart(p4);
-    }
-    else if(num==5){
-        showTableandChart(p5);
-    }
-    else if(num==6){
-        showTableandChart(p6);
-    }
-    else if(num==7){
-        showTableandChart(p8);
-    }
-    else if(num==9){
-        showTableandChart(p9);
-    }
-    else if(num==10){
-        showTableandChart(p10);
-    }
-    else if(num==11){
-        showTableandChart(p11);
-    }
-    else if(num==12){
-        showTableandChart(p12);
-    }
-
-
+    
 };
 
 
@@ -261,8 +217,10 @@ function deleteTab(){
     
 }
 
-function addToChart(chart, power, time,x, temptime) {
-
+function addToChart(chart, power, time,x, temptime,newData) {
+    if(newData){
+        chart.data.datasets[0].data=[];
+    }
     chart.data.datasets[0].data[x] = power;
     chart.data.labels[x] = temptime
     chart.update();
@@ -273,192 +231,177 @@ function addToArray(num) {
 
     var rowElement = {
         profile:"profile",
-        index: "Index",
+        ind: "Index",
         secMin : "type",
         time: "Time",
         power: "Power",
         
     }
 
-    
-    let timeAdded = document.getElementById("addTime" + num).value;
-    console.log(timeAdded);
     let powerAdded = document.getElementById("addPower" + num).value;
-    setTimeAdded = timeAdded;
-    setPowerAdded = powerAdded;
+    let timeAdded = document.getElementById("addTime" + num).value;
+    if(time_switch_value === 'MIN'){
+        if(timeAdded > 60 || timeAdded <=0){
+            document.getElementById('alert1').innerHTML = "Time Value must be between 0-60"
+            $('#alert1').show();
+        }else if(powerAdded<=0 || powerAdded >10){
+            document.getElementById('alert1').innerHTML = "Power Value must be between 0-10";
+            $('#alert1').show();
+        }else{
+            
+            setTimeAdded = timeAdded;
+            setPowerAdded = powerAdded;
 
-    rowElement['type']=time_switch_value;
-    console.log(time_switch_value);
-    if(timeAdded <10){
-        timeAdded = '00' + timeAdded;
-    }else if(timeAdded <100 ){
-        timeAdded = '0' + timeAdded;
-    }
-    rowElement['profile'] = 'p' + num;
-    rowElement['time'] = parseInt(timeAdded);
-    rowElement['power']=parseInt(powerAdded);
-    console.log(rowElement);
-    
-   
-    if(rowElement['profile'] === 'p1'){
-        if(p1.length < 12){
-            console.log(rowElement);
-            console.log(p1);
-            p1.push(rowElement);
-            console.log(rowElement);
-            console.log(p1);
-        }else{
-            $('#alert').innerHTML = "Row Number must be between 0-12";
-            $('#alert').show();
-        }    
-        showTableandChart(p1); 
-    }else if(rowElement['profile']=== 'p2'){
-        if(p2.length < 12){
-            p2.push(rowElement);
-            console.log(p2);
-        }else{
-            $('#alert').innerHTML = "Row Number must be between 0-12";
-            $('#alert').show();
+            rowElement['type']=time_switch_value;
+            console.log(time_switch_value);
+            if(timeAdded <10){
+                timeAdded = '00' + timeAdded;
+            }else if(timeAdded <100 ){
+                timeAdded = '0' + timeAdded;
+            }
+            rowElement['profile'] = 'p' + num;
+            rowElement['time'] = parseInt(timeAdded);
+            rowElement['power']=parseInt(powerAdded);
+            
+            if(px[num]==undefined){
+                px[num]=[];
+                px[num].push(rowElement);
+            }else if(px[num].length <= 12){
+                px[num].push(rowElement);
+            }else{
+                $('#alert').innerHTML = "Row Number must be between 0-12";
+                $('#alert').show();
+
+            }
+            showTableandChart(px[num]);
+
         }
-        showTableandChart(p2);     
-    }else if(rowElement['profile']=== 'p3'){
-        if(p3.length < 12){
-            p3.push(rowElement);
+    }else{
+        if(timeAdded > 60 || timeAdded <=0){
+            document.getElementById('alert1').innerHTML = "Time Value must be between 0-120"
+            $('#alert1').show();
+        }else if(powerAdded<=0 || powerAdded >10){
+            document.getElementById('alert1').innerHTML = "Power Value must be between 0-10";
+            $('#alert1').show();
         }else{
-            $('#alert').innerHTML = "Row Number must be between 0-12";
-            $('#alert').show();
-        }   
-        showTableandChart(p3);  
-    }else if(rowElement['profile']=== 'p4'){
-        if(p4.length < 12){
-            p4.push(rowElement);
-        }else{
-            $('#alert').innerHTML = "Row Number must be between 0-12";
-            $('#alert').show();
-        }  
-        showTableandChart(p4);   
-    }else if(rowElement['profile']=== 'p5'){
-        if(p5.length < 12){
-            p5.push(rowElement);
-        }else{
-            $('#alert').innerHTML = "Row Number must be between 0-12";
-            $('#alert').show();
-        }    
-        showTableandChart(p5); 
-    }else if(rowElement['profile']=== 'p6'){
-        if(p6.length < 12){
-            p6.push(rowElement);
-        }else{
-            $('#alert').innerHTML = "Row Number must be between 0-12";
-            $('#alert').show();
-        }    
-        showTableandChart(p6); 
-    }else if(rowElement['profile']=== 'p7'){
-        if(p7.length < 12){
-            p7.push(rowElement);
-        }else{
-            $('#alert').innerHTML = "Row Number must be between 0-12";
-            $('#alert').show();
-        }    
-        showTableandChart(p7); 
-    }else if(rowElement['profile']=== 'p8'){
-        if(p8.length < 12){
-            p8.push(rowElement);
-        }else{
-            $('#alert').innerHTML = "Row Number must be between 0-12";
-            $('#alert').show();
-        }    
-        showTableandChart(p8); 
-    }else if(rowElement['profile']=== 'p9'){
-        if(p9.length < 12){
-            p9.push(rowElement);
-        }else{
-            $('#alert').innerHTML = "Row Number must be between 0-12";
-            $('#alert').show();
-        }  
-        showTableandChart(p9);   
-    }else if(rowElement['profile']=== 'p10'){
-        if(p10.length < 12){
-            p10.push(rowElement);
-        }else{
-            $('#alert').innerHTML = "Row Number must be between 0-12";
-            $('#alert').show();
-        }    
-        showTableandChart(p10); 
-    }else if(rowElement['profile']=== 'p11'){
-        if(p11.length < 12){
-            p11.push(rowElement);
-        }else{
-            $('#alert').innerHTML = "Row Number must be between 0-12";
-            $('#alert').show();
-        }    
-        showTableandChart(p11); 
-    }else if(rowElement['profile']=== 'p12'){
-        if(p12.length < 12){
-            p12.push(rowElement);
-        }else{
-            $('#alert').innerHTML = "Row Number must be between 0-12";
-            $('#alert').show();
-        }   
-        showTableandChart(p12); 
-    }
+            
+            setTimeAdded = timeAdded;
+            setPowerAdded = powerAdded;
 
-        document.getElementById('addPower' + num).value="";
-        document.getElementById('addPower' + num).placeholder="0-6";
-        document.getElementById('addTime' + num).value="";
-        if(time_switch_value === 'MIN'){    
-           document.getElementById('addTime' + num).placeholder='0-60'; 
-        }else{
-           document.getElementById('addTime' + num).placeholder='0-240';
-        }   
+            rowElement['type']=time_switch_value;
+            console.log(time_switch_value);
+            if(timeAdded <10){
+                timeAdded = '00' + timeAdded;
+            }else if(timeAdded <100 ){
+                timeAdded = '0' + timeAdded;
+            }
+            rowElement['profile'] = 'p' + num;
+            rowElement['time'] = parseInt(timeAdded);
+            rowElement['power']=parseInt(powerAdded);
+            
+            if(px[num]==undefined){
+                px[num]=[];
+                px[num].push(rowElement);
+            }else if(px[num].length <= 12){
+                px[num].push(rowElement);
+            }else{
+                $('#alert').innerHTML = "Row Number must be between 0-12";
+                $('#alert').show();
+
+            }
+            showTableandChart(px[num]);
+
+        }
+
+    }
+    document.getElementById('addPower' + num).value="";
+    document.getElementById('addPower' + num).placeholder="0-6";
+    document.getElementById('addTime' + num).value="";
+    
+
+    if(time_switch_value === 'MIN'){    
+        document.getElementById('addTime' + num).placeholder='0-60'; 
+    }else{
+        document.getElementById('addTime' + num).placeholder='0-240';
+    }   
+    
+    
 }
 
 function showTableandChart(obj){
-
+    console.log(obj);
     var table = document.getElementById('data');
-    table.style.display ='block';
-  // document.getElementById('proName').innerHTML=item['profile'];
-    var btable = document.getElementById('bodyOfTable');
-    var cols = btable.getElementsByTagName('td');
-    var rows = btable.getElementsByTagName('tr');
-
-    for(var i=0;i<60;i+=5){
-        cols[i].textContent="";
-        cols[i+1].textContent="";
-        cols[i+2].textContent="";
-        cols[i+3].textContent="";
-        cols[i+4].textContent="";
-
+    table.style.display='block';
+    let tabBody = document.getElementById('bodyOfTable');
+    if(tabBody.hasChildNodes()){
+        var child = tabBody.lastElementChild;
+        while(child){
+            tabBody.removeChild(child);
+            child = tabBody.lastElementChild;
+        }
     }
     var indx = 0;
     var row = 0;
     var temptime = 0;
+    var removed = false;
+    
     for(var item of obj){
+
         console.log(item);
-        cols[indx].textContent=row + 1;
-        cols[indx+1].textContent=item['profile'];
-        cols[indx+2].textContent=item['type'];
-        cols[indx+3].textContent=item['time'];
+        let r1 = document.createElement('tr');
+        let td1 = document.createElement('td');
+        item['ind'] = row;
+        td1.textContent=item['ind'] + 1;
+        r1.appendChild(td1);
+        let td2 = document.createElement('td');
+        td2.textContent=item['profile'];
+        r1.appendChild(td2);
+        let td3 = document.createElement('td');
+        td3.textContent=item['type'];
+        r1.appendChild(td3);
+        let td4 = document.createElement('td');
+        td4.textContent=item['time'];
         temptime += item['time'];
-        cols[indx+4].textContent=item['power'];
-        let td = document.createElement('td');
+        r1.appendChild(td4);
+        let td5 =document.createElement('td');
+        td5.textContent=item['power'];
+        r1.appendChild(td5);
         let deleteButton = document.createElement('button');
-        deleteButton.classList = "btn btn-danger btn-sm"
-        deleteButton.id = "delete-btn"
-        deleteButton.innerHTML = "<i class='fa fa-trash'></i>"
-        deleteButton.onclick = function() {
-            item.filter(function(){
-                
-            });
-        };
-        deleteButton.style = "margin:5px 0 0 4px";
-        rows[row].appendChild(deleteButton);
-        addToChart(lineChart,item['power'],item['time'], row, temptime);
+                 deleteButton.classList = "btn btn-danger btn-sm"
+                 deleteButton.id = "delete-btn"
+                 deleteButton.innerHTML = "<i class='fa fa-trash'></i>"
+                 deleteButton.onclick = function() {
+                     $(this).closest("tr").remove();
+                     removed = true;
+                     //console.log(px[row]);
+                     var nnn = parseInt(item['profile'].split('p')[1]);
+                     
+                     var deleted = item['ind'];
+                     px[nnn].splice(deleted,1);
+                     for(var i=0;i<px[nnn].length;i++){
+                            px[nnn][i]["ind"]=i;
+                     }
+                     row--;
+                 };
+                 deleteButton.style = "margin:5px 0 0 4px"
+                r1.appendChild(deleteButton);
+        
+        document.getElementById('bodyOfTable').appendChild(r1);
+        
+      console.log(item);
+
+        if(row==0){
+            addToChart(lineChart,item['power'],item['time'], row, temptime,true);
+        }else{
+            addToChart(lineChart,item['power'],item['time'], row, temptime,false);
+        }
+        
         row++;
-        indx+=5; 
     }
 
 }
+
+
 
 var beginResult = 0,
     endResult = 0;

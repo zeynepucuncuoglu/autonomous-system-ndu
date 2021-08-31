@@ -58,7 +58,7 @@
                                     <div class="tab">
                                         <nav>
                                             <div class="nav nav-tabs" id="nav-tab" role="tablist" style="border:none">
-                                            <a class="nav-item bg-danger nav-link btn-sm text-white" id="button" data-toggle="tab" onclick="deleteTab()" value="button" role="tab" aria-selected="true"><i class="fa fa-trash"></i></a>    
+                                            <a class="nav-item bg-danger nav-link btn-sm text-white" id="button" data-toggle="tab" onclick="deleteTab()" value="button" role="tab" aria-selected="true"><i class="fa fa-minus"></i></a>    
                                             <a class="nav-item bg-primary nav-link btn-sm text-white" id="button" data-toggle="tab" onclick="openNewTab()" value="button" role="tab" aria-selected="true"><i class="fa fa-plus"></i></a>    
                                             <a class="nav-item nav-link active profile but" id="p1" data-toggle="tab" onclick="openProfile(event,'Profile1', 1)" value="P1" role="tab" aria-selected="true">p1</a>
                                             </div>
@@ -83,10 +83,16 @@
                                                     <div id="Profile1" class="tabcontent tab-pane fade show active" role="tabpanel" aria-labelledby="p1"> 
                                                             <div class="container-fluid" >
                                                                 <form class="form-inline">
+                                                                    <div class="flex-container">
+                                                                    <div>  
                                                                     <label for="addPower1" class="m-2">Add Power</label>
                                                                     <input type="text" class="form-control m-2 col-sm-1" id="addPower1" onchange="checkPower(1)" required>
+                                                                    </div>  
+                                                                    <div>
                                                                     <label for="addTime1" class="m-2">Add Time</label>
                                                                     <input type="text" class="form-control m-2 col-sm-1 time" id="addTime1" onchange="checkTime(1)" required>
+                                                                    </div>
+                                                                    </div>
                                                                     <div class="d-grid gap-2 col-sm-1 mx-auto">
                                                                         <button class="btn btn-primary btn-sm" type="button" onclick="addToArray(1)"><i class="fa fa-plus"></i></button>       
                                                                     </div>
@@ -109,98 +115,15 @@
                                                         <th scope="col">Sec/Min</th>
                                                         <th scope="col">Time</th>
                                                         <th scope="col">Power</th>
+                                                        <th scope="col">Delete</th>
                                                         </tr>
         
                                                         </thead>
-                                                        <tbody id="bodyOfTable" >
-                                                        <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                        <td></td>    
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                        <td></td>    
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                        <td></td>   
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                        <td></td>                     
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        </tr>
-                                                        </tbody>
-                                                        </table>
-                                                        <canvas id="lineChart" width="200" height="200"></canvas>
+                                                        <tbody id="bodyOfTable" ></tbody>                              
+                                                    </table>
+                                                    
                                                 </div>
+                                                <canvas id="lineChart" width="200" height="200"></canvas>
                                             </div>
                                         </div>
                                         <div class="card">

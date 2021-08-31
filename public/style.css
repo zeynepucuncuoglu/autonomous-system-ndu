@@ -2,8 +2,13 @@
     display: none;
 }
 
-#nav-tab {
-    border:none
+#nav-tab .active{
+    border:none;
+    background-color: #E6E6FA;
+}
+
+.nav-item .nav-link a{
+    color:white;
 }
 
 .card{
@@ -15,10 +20,7 @@ header > h1{
     color: #DFCCF1 ;
 }
 
-.active a{
-    background-color: blueviolet;
-
-}
+ 
 
 .card-header{
     color: rgb(85, 84, 84);
@@ -35,7 +37,12 @@ td{
 }
 
 table{
-margin-left: auto;
-margin-right: auto;
+
 }
 
+.flex-container{
+    display: flex;
+    align-content: space-between;
+    justify-content: center;
+    padding-right: 15px;
+}
